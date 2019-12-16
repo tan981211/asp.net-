@@ -88,11 +88,92 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\css\amaze.css" />
+    <Content Include="assets\css\bootstrap-datetimepicker.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\demo.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\font-muli.css" />
+    <Content Include="assets\css\themify-icons.css" />
+    <Content Include="assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\fonts\themify.svg" />
+    <Content Include="assets\img\faces\avatar.png" />
+    <Content Include="assets\img\favicon.png" />
+    <Content Include="assets\img\flags\AU.png" />
+    <Content Include="assets\img\flags\BR.png" />
+    <Content Include="assets\img\flags\DE.png" />
+    <Content Include="assets\img\flags\GB.png" />
+    <Content Include="assets\img\flags\RO.png" />
+    <Content Include="assets\img\flags\US.png" />
+    <Content Include="assets\img\image_placeholder.jpg" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\logo_placeholder.png" />
+    <Content Include="assets\img\mask.png" />
+    <Content Include="assets\img\pickBackGound.jpg" />
+    <Content Include="assets\img\placeholder.jpg" />
+    <Content Include="assets\img\product-image-120x120.png" />
+    <Content Include="assets\js\amaze.js" />
+    <Content Include="assets\js\bootstrap-checkbox-radio-switch-tags.js" />
+    <Content Include="assets\js\charts\chartjs-charts.js" />
+    <Content Include="assets\js\charts\flot-charts.js" />
+    <Content Include="assets\js\demo.js" />
+    <Content Include="assets\js\jquery.easypiechart.min.js" />
+    <Content Include="assets\vendors\bootstrap-datetimepicker.js" />
+    <Content Include="assets\vendors\bootstrap-notify.js" />
+    <Content Include="assets\vendors\bootstrap.min.js" />
+    <Content Include="assets\vendors\chartist.min.js" />
+    <Content Include="assets\vendors\charts\chartjs\Chart.min.js" />
+    <Content Include="assets\vendors\charts\flot\jquery.flot.categories.js" />
+    <Content Include="assets\vendors\charts\flot\jquery.flot.js" />
+    <Content Include="assets\vendors\charts\flot\jquery.flot.pie.js" />
+    <Content Include="assets\vendors\charts\flot\jquery.flot.resize.js" />
+    <Content Include="assets\vendors\charts\flot\jquery.flot.stack.js" />
+    <Content Include="assets\vendors\dropzone\dropzone.min.css" />
+    <Content Include="assets\vendors\dropzone\dropzone.min.js" />
+    <Content Include="assets\vendors\fullcalendar.min.js" />
+    <Content Include="assets\vendors\jasny-bootstrap.min.js" />
+    <Content Include="assets\vendors\jquery-3.1.1.min.js" />
+    <Content Include="assets\vendors\jquery-jvectormap.js" />
+    <Content Include="assets\vendors\jquery-ui-1.12.0\jquery-ui.css" />
+    <Content Include="assets\vendors\jquery-ui-1.12.0\jquery-ui.js" />
+    <Content Include="assets\vendors\jquery-ui.min.js" />
+    <Content Include="assets\vendors\jquery.bootstrap-wizard.js" />
+    <Content Include="assets\vendors\jquery.datatables.js" />
+    <Content Include="assets\vendors\jquery.select-bootstrap.js" />
+    <Content Include="assets\vendors\jquery.tagsinput.js" />
+    <Content Include="assets\vendors\jquery.validate.min.js" />
+    <Content Include="assets\vendors\material.min.js" />
+    <Content Include="assets\vendors\moment.min.js" />
+    <Content Include="assets\vendors\nouislider.min.js" />
+    <Content Include="assets\vendors\perfect-scrollbar.jquery.min.js" />
+    <Content Include="assets\vendors\sweetalert\css\sweetalert2.min.css" />
+    <Content Include="assets\vendors\sweetalert\js\sweetalert2.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\fonts\themify.eot" />
+    <Content Include="assets\fonts\themify.ttf" />
+    <Content Include="assets\fonts\themify.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
+    <Content Include="Views\Shared\muban.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -100,7 +181,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Repair.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,7 +197,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>

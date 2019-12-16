@@ -9,11 +9,19 @@ namespace asp.net实训_.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Repair()
+        public ActionResult repairUser()
         {
             return View();
         }
-        public ActionResult Compalin()
+        public ActionResult CompalinUser()
+        {
+            return View();
+        }
+       public ActionResult repairAdmin()
+        {
+            return View();
+        }
+        public ActionResult compailnAdmin()
         {
             return View();
         }

@@ -74,7 +74,7 @@
     <!-- TagsInput Plugin -->
     <script src="/assets/vendors/jquery.tagsinput.js"></script>
     <!-- Material Dashboard javascript methods -->
-    <script src="/assets/js/amaze.js"></script>
+
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="/assets/js/demo.js"></script>
 
@@ -103,40 +103,40 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="active">
+                    <li @*class="active"*@>
                         <a href="#">
                             <i class="ti-panel"></i>
                             <p class="change">首页</p>
                         </a>
                     </li>
                     <li>
-                        <a href="/Home/test">
+                        <a href="#">
                             <i class="ti-widget"></i>
-                            <p class="change">业主用户信息</p>
+                            <p class="change">业主信息管理</p>
                         </a>
                     </li>
                     <li id="repair">
-                        <a href="/Home/Repair">
+                        <a href="/Home/repairAdmin">
                             <i class="ti-package"></i>
-                            <p class="change">业主报修信息</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="ti-clipboard"></i>
-                            <p class="change">业主收费信息</p>
+                            <p class="change">维修信息管理</p>
                         </a>
                     </li>
                     <li id="Compalin">
-                        <a href="/Home/Compalin">
-                            <i class="ti-view-list-alt"></i>
+                        <a href="/Home/compailnAdmin">
+                            <i class="ti-clipboard"></i>
                             <p class="change">业主投诉信息</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#">
+                            <i class="ti-view-list-alt"></i>
+                            <p class="change">停车信息管理</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i class="ti-gift"></i>
-                            <p class="change">社区论坛</p>
+                            <p class="change">信息发布</p>
                         </a>
                     </li>
 
@@ -163,7 +163,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#" id="change1"> 首页 </a>
+                        <a class="navbar-brand" href="#" id="change1"> </a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">

@@ -13,5 +13,9 @@ namespace asp.net实训_.Controllers
         {
             return View();
         }
+        public ActionResult Compalin()
+        {
+            return View();
+        }
     }
 }

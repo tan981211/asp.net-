@@ -1,6 +1,8 @@
-﻿@{
-    Layout = "~/Views/Shared/mubanAdmin.cshtml";
-    ViewBag.Title = "repairAdmin";
+﻿@model asp.net实训_.RouteConfig
+
+@{
+    ViewBag.Title = "repairUser";
+    Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 @RenderPage("../Shared/foot.cshtml")
     </footer>
@@ -11,7 +13,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#change1").text("维修信息管理");
+        $("#change1").text("业主维修信息");
         $(".active").removeClass("active");
         $("#repair").addClass("active");
     });

@@ -1,6 +1,8 @@
-﻿
+﻿@model asp.net实训_.RouteConfig
+
 @{
     ViewBag.Title = "compalinUser";
+    Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 
 @RenderPage("../Shared/foot.cshtml")
@@ -14,7 +16,8 @@
 
         $("#change1").text("业主投诉信息"); /*这里只要改text里面的*/
         $(".active").removeClass("active"); /*这里不用换改*/
-        $("#Compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+        $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
     });
 </script>
+
 

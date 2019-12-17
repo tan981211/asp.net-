@@ -1,0 +1,267 @@
+﻿@model asp.net实训_.RouteConfig
+
+@{
+    ViewBag.Title = "indexAdmin";
+    Layout = "~/Views/Shared/mubanAdmin.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <!-- 饼状图与折线图 -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">维修记录饼状图</h4>
+                    </div>
+                    <div class="content">
+                        <div class="chart chart-js-container">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">收费与欠费对比折现图</h4>
+                    </div>
+                    <div class="content">
+                        <div class="chart ">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- 面积图 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">投诉面积图</h4>
+                    </div>
+
+                    <div class="content">
+                        <div class="chart ">
+                            <canvas id="areaChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@RenderPage("../Shared/foot.cshtml")
+    </footer>
+    </div>
+
+    </div>
+@RenderPage("../Shared/js.cshtml")
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#change1").text("首页");
+        $(".active").removeClass("active");
+        $("#index").addClass("active");
+    });
+    $(function () {
+
+        // 饼状图
+        if ($('#pieChart')[0]) {
+            //使用jQuery的.Get（）方法获取jQuery的上下文。
+            var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+
+            var config = {
+                type: 'pie',
+                data: {
+                    datasets: [{
+                        data: [
+                            11,
+                            16,
+                            // 7,
+                            // 3,
+                            // 14
+                        ],
+                        backgroundColor: [
+                            "#FF6384",
+                            "#4BC0C0",
+                            // "#FFCE56",
+                            // "#E7E9ED",
+                            // "#36A2EB"
+                        ],
+                        label: 'My dataset' // for legend
+                    }],
+                    labels: [
+                        "已解决",
+                        "未解决",
+                        // "Austalia",
+                        // "Canada",
+                        // "France"
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
+
+            var myPie = new Chart(pieChartCanvas, config);
+
+        }
+
+
+        //折线图
+        var config = {
+            type: 'line',
+            data: {
+                labels: ["一月", "二月", "三月", "四月", "五月", "六月", "7月"],
+                datasets: [{
+                    label: "收费指数",
+                    backgroundColor: "#FF6384",
+                    borderColor: "#FF6384",
+                    data: [
+                        45,
+                        75,
+                        26,
+                        23,
+                        60,
+                        -48,
+                        -9
+                    ],
+                    fill: false,
+                }, {
+                    label: "欠费指数",
+                    fill: false,
+                    backgroundColor: "#36A2EB",
+                    borderColor: "#36A2EB",
+                    data: [
+                        -10,
+                        16,
+                        72,
+                        93,
+                        29,
+                        -74,
+                        64
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: '半年内记录'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: '月份'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+
+        if ($('#lineChart')[0]) {
+            var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
+            var lineChart = new Chart(lineChartCanvas, config);
+
+        }
+
+    })
+
+
+
+    //面积图
+    var config = {
+        type: 'line',
+        data: {
+            labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            datasets: [{
+                label: "投诉人数",
+                backgroundColor: "#FF8A20",
+                borderColor: "#FF8A20",
+                data: [
+                    45,
+                    75,
+                    26,
+                    23,
+                    60,
+                    48,
+                    9,
+                    45,
+                    75,
+                    26,
+                    23,
+                    60,
+                    48,
+                    9
+                ],
+                fill: true,
+            }]
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: '一年内记录'
+            },
+            tooltips: {
+                mode: 'index',
+                intersect: false,
+            },
+            hover: {
+                mode: 'nearest',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: '月份'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Value'
+                    }
+                }]
+            }
+        }
+    };
+
+    if ($('#areaChart')[0]) {
+
+        // Get context with jQuery - using jQuery's .get() method.
+        var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
+
+        //Create the line chart
+        var areaChart = new Chart(areaChartCanvas, config);
+
+    }
+
+</script>
+

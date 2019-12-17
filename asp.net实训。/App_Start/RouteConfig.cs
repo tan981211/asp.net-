@@ -16,8 +16,19 @@ namespace asp.net实训_
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "charge", action = "Index", id = UrlParameter.Optional }
             );
+            //routes.MapRoute(
+            //     "charge",
+            //    "{controller}/{action}/{id}",
+            //     new { controller = "charge", action = "Index", id = UrlParameter.Optional }
+            //);
+            //routes.MapRoute(
+            //    "user",
+            //    "{controller}/{action}/{id}",
+            //    new { controller = "user", action = "Index", id = UrlParameter.Optional }
+            //);
+            
         }
     }
 }

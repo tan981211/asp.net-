@@ -5,6 +5,190 @@
     Layout = "~/Views/Shared/mubanAdmin.cshtml";
 }
 
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 业主信息的查看和业主注册 -->
+            <div class="col-md-12">
+                <div class="card" id="profile-main">
+                    <div class="content">
+                        <h3>欢迎 管理员小张！</h3>
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="active">
+                                        <a href="#profile11" aria-controls="profile11" role="tab" data-toggle="tab">业主信息管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="#settings11" aria-controls="settings11" role="tab" data-toggle="tab">业主注册</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <!-- 业主信息管理栏 -->
+                            <div role="tabpanel" class="tab-pane active" id="profile11">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="content">
+                                            <h4 class="title">业主数据记录</h4>
+                                            <div class="toolbar">
+                                                <!--        在这里您可以为工具栏编写额外的按钮/操作             -->
+                                            </div>
+                                            <div class="material-datatables">
+                                                <table id="datatables" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>业主账号</th>
+                                                            <th>业主姓名</th>
+                                                            <th>业主邮箱</th>
+                                                            <th>业主电话</th>
+                                                            <th>业主地址</th>
+                                                            <th class="disabled-sorting text-right">操作</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>100011</td>
+                                                            <td>张跃</td>
+                                                            <td>1417279498@qq.com</td>
+                                                            <td>15107685310</td>
+                                                            <td>14栋420</td>
+                                                            <td class="text-right">
+                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a>
+                                                                <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <th>业主账号</th>
+                                                            <th>业主姓名</th>
+                                                            <th>业主邮箱</th>
+                                                            <th>业主电话</th>
+                                                            <th>业主地址</th>
+                                                            <th class="text-right">操作</th>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!-- end content-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 业主注册栏 -->
+                            <div role="tabpanel" class="tab-pane" id="settings11">
+                                <div class="widget p-25">
+                                    <div class="card">
+                                        <form id="allInputsFormValidation" class="form-horizontal" action="" method="post" novalidate="">
+                                            <div class="content">
+                                                <h4 class="title">基本信息修改</h4>
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主账号
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主密码
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主姓名
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主地址
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主邮箱
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="email"
+                                                                   email="true" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主电话
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="card-footer text-center">
+                                                <button type="submit" class="btn btn-info btn-fill">确认修改</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
 @RenderPage("../Shared/foot.cshtml")
     </footer>
     </div>
@@ -12,11 +196,83 @@
     </div>
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
+    // 验证
+    $().ready(function () {
+        $('#allInputsFormValidation').validate();
+    });
+
     $(document).ready(function () {
 
         $("#change1").text("业主用户信息管理"); /*这里只要改text里面的*/
         $(".active").removeClass("active"); /*这里不用换改*/
         $("#user").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+
+        //对table的操作
+        $('#datatables').DataTable({
+            "fnPreDrawCallback": function (oSettings) {
+                $('.dataTables_filter input').attr({ 'name': 'search', 'placeholder': '搜索业主账号' });//提示
+            },
+
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [5, 10, 25, 50, -1],
+                [5, 10, 25, 50, "All"]
+
+            ],
+            responsive: true,
+
+            // 更换语言
+            "oLanguage": {
+                "sLengthMenu": "每页显示 _MENU_ 条记录",
+                "sZeroRecords": "抱歉，没有找到",
+                "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据 ",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+                "sSearch": "查找",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "前一页",
+                    "sNext": "后一页",
+                    "sLast": "尾页",
+                    "sZeroRecords": "没有检索到数据",
+
+                },
+
+
+            }
+
+
+        });
+
+
+        var table = $('#datatables').DataTable();
+
+        // 编辑记录
+        table.on('click', '.edit', function () {
+            $tr = $(this).closest('tr');
+
+            var data = table.row($tr).data();
+            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+        });
+
+        // 删除记录
+        table.on('click', '.remove', function (e) {
+            $tr = $(this).closest('tr');
+            table.row($tr).remove().draw();
+            e.preventDefault();
+        });
+
+        //喜欢记录
+        table.on('click', '.like', function () {
+            alert('You clicked on Like button');
+        });
+
+        //对第一列进行模糊非智能搜索
+        table.columns(0).search($('.input_search').val(), true, false).draw();
+
+        $('.card .material-datatables label').addClass('form-group');
+
+
     });
 </script>
 

@@ -5,11 +5,257 @@
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 左边的内容 -->
+            <div class="col-md-8">
+                <div class="card" id="profile-main">
+                    <div class="content">
+                        <h3>欢迎 业主！</h3>
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="active">
+                                        <a href="#profile11" aria-controls="profile11" role="tab" data-toggle="tab">业主信息</a>
+                                    </li>
+                                    <li>
+                                        <a href="#activities11" aria-controls="messages11" role="tab" data-toggle="tab">记录</a>
+                                    </li>
+                                    <li>
+                                        <a href="#settings11" aria-controls="settings11" role="tab" data-toggle="tab">信息修改</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-content">
+                            <!-- 业主信息栏 -->
+                            <div role="tabpanel" class="tab-pane active" id="profile11">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="p-15">
+                                            <h4>基本信息</h4>
+                                            <hr>
+                                            <div class="row m-l-5">
+                                                <div class="col-sm-6 p-5">
+                                                    <p><strong>业主姓名</strong></p>
+                                                    <p><strong>业主地址</strong></p>
+                                                    <p><strong>业主邮箱</strong></p>
+                                                    <p><strong>业主电话</strong></p>
+                                                </div>
+                                                <div class="col-sm-6 p-10 p-5">
+                                                    <p>张跃</p>
+                                                    <p>14栋420</p>
+                                                    <p>abc131def456ghi789@qq.com</p>
+                                                    <p>15107685310</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 记录栏 -->
+                            <div role="tabpanel" class="tab-pane" id="activities11">
+                                <div class="widget p-25">
+
+                                    <div class="widget-body">
+                                        <div class="streamline sl-style-2">
+                                            <div class="sl-item sl-primary">
+                                                <div class="sl-content">
+                                                    <small class="text-muted">2019-11-25-16：00</small>
+                                                    <p>维修记录1</p>
+                                                </div>
+                                            </div>
+                                            <div class="sl-item sl-danger">
+                                                <div class="sl-content">
+                                                    <small class="text-muted">2019-11-26-18：00</small>
+                                                    <p>维修记录2</p>
+                                                </div>
+                                            </div>
+                                            <div class="sl-item sl-success">
+                                                <div class="sl-content">
+                                                    <small class="text-muted">2019-11-27-19：00</small>
+                                                    <p>投诉记录3</p>
+                                                </div>
+                                            </div>
+                                            <div class="sl-item">
+                                                <div class="sl-content">
+                                                    <small class="text-muted">2019-11-29-9：00</small>
+                                                    <p>收费记录4</p>
+                                                </div>
+                                            </div>
+                                            <div class="sl-item sl-warning">
+                                                <div class="sl-content">
+                                                    <small class="text-muted">2019-11-25-16：00</small>
+                                                    <p>收费记录5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 信息修改栏 -->
+                            <div role="tabpanel" class="tab-pane" id="settings11">
+                                <div class="widget p-25">
+                                    <div class="card">
+                                        <form id="allInputsFormValidation" class="form-horizontal" action="" method="post" novalidate="">
+                                            <div class="content">
+                                                <h4 class="title">基本信息修改</h4>
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主姓名
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主地址
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主邮箱
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="email"
+                                                                   email="true" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">
+                                                            业主电话
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control"
+                                                                   type="text"
+                                                                   name="required"
+                                                                   required="required" />
+                                                        </div>
+                                                        <div class="col-sm-4"><code>*</code></div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                            <div class="card-footer text-center">
+                                                <button type="submit" class="btn btn-info btn-fill">确认修改</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 右边的内容 -->
+            <div class="col-md-4">
+                <div class="card card-user">
+                    <div class="author">
+                        <legend></legend>
+                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail img-circle">
+                                <img src="../assets/img/placeholder.jpg" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
+                            <div>
+                                <span class="btn btn-default btn-fill btn-file">
+                                    <span class="fileinput-new">添加头像</span>
+                                    <span class="fileinput-exists">更改</span>
+                                    <input type="file" name="..." />
+                                </span>
+                                <br />
+                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> 去除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="author">
+                        <a href="#pablo">
+                            <img class="img avatar" src="../assets/img/faces/avatar.png" />
+                        </a>
+                    </div> -->
+                    <div class="content">
+                        <h4 class="title" id="userId">业主账号</h4>
+                        <h4 class="title" id="userName">业主姓名</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".example-modal-sm">密码修改</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @RenderPage("../Shared/foot.cshtml")
     </footer>
     </div>
 
     </div>
+
+<!--small modal-->
+<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <form id="RegisterValidation" action="" method="">
+                        <div class="content">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    新密码
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                            </div>
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    确认密码
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalto="#registerPassword" />
+                            </div>
+                            <div class="category form-category">
+                                <small>*</small> 必填项
+                            </div>
+                            <div class="form-footer text-right">
+                                <button type="submit" class="btn btn-rose btn-fill btn-default">保存更改</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
     $(document).ready(function () {
@@ -17,6 +263,12 @@
         $("#change1").text("业主用户信息"); /*这里只要改text里面的*/
         $(".active").removeClass("active"); /*这里不用换改*/
         $("#user").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+
+
+        $('#allInputsFormValidation').validate();
+
+        $("#userId").text("100001");
+        $("#userName").text("张跃");
     });
 </script>
 

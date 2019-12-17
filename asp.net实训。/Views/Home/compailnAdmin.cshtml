@@ -3,15 +3,16 @@
     ViewBag.Title = "repairAdmin";
 }
 
-         </footer>
-        </div>
+@RenderPage("../Shared/foot.cshtml")
+    </footer>
+    </div>
 
     </div>
-<script src="/assets/js/amaze.js"></script>
+@RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#change1").text("业主投诉信息");
+        $("#change1").text("业主投诉信息管理");
         $(".active").removeClass("active");
         $("#Compalin").addClass("active");
     });

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="/assets/img/logo.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>社区安防管理简易系统</title>
@@ -12,75 +12,31 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' name='viewport'>
     <meta name="viewport" content="width=device-width">
 
-    <!-- Bootstrap core CSS     -->
+    <!-- 引导核心CSS      -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--  Material Dashboard CSS    -->
+    <!--  材料仪表板CSS    -->
     <link href="/assets/css/amaze.css" rel="stylesheet">
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/assets/css/demo.css" rel="stylesheet">
+    @*<link href="/assets/css/demo.css" rel="stylesheet">*@
 
-    <!--     Fonts and icons     -->
+    <!--     字体和图标     -->
     <link href="/assets/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/css/font-muli.css" rel='stylesheet' type='text/css'>
     <link href="/assets/css/themify-icons.css" rel="stylesheet">
-    <script src="/assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="/assets/vendors/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="/assets/vendors/bootstrap.min.js" type="text/javascript"></script>
-    <script src="/assets/vendors/material.min.js" type="text/javascript"></script>
-    <script src="/assets/vendors/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="/assets/vendors/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="/assets/vendors/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="/assets/vendors/charts/flot/jquery.flot.js"></script>
-    <script src="/assets/vendors/charts/flot/jquery.flot.resize.js"></script>
-    <script src="/assets/vendors/charts/flot/jquery.flot.pie.js"></script>
-    <script src="/assets/vendors/charts/flot/jquery.flot.stack.js"></script>
-    <script src="/assets/vendors/charts/flot/jquery.flot.categories.js"></script>
-    <script src="/assets/vendors/charts/chartjs/Chart.min.js" type="text/javascript"></script>
-
-    <!--  Plugin for the Wizard -->
-    <script src="/assets/vendors/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="/assets/vendors/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="/assets/vendors/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="/assets/vendors/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="/assets/vendors/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="http://ditu.google.cn/maps/api/js?key=AIzaSyAurmSUEQDwY86-wOG3kCp855tCI8lHL-I"></script>
-    <!-- Select Plugin -->
-    <script src="/assets/vendors/jquery.select-bootstrap.js"></script>
-
-    <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
-    <script src="/assets/js/bootstrap-checkbox-radio-switch-tags.js"></script>
-
-    <!-- Circle Percentage-chart -->
-    <script src="/assets/js/jquery.easypiechart.min.js"></script>
-
-    <!--  DataTables.net Plugin    -->
-    <script src="/assets/vendors/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="/assets/vendors/sweetalert/js/sweetalert2.min.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="/assets/vendors/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="/assets/vendors/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="/assets/vendors/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="/assets/js/demo.js"></script>
-
-    <script src="/assets/js/charts/flot-charts.js"></script>
-    <script src="/assets/js/charts/chartjs-charts.js"></script>
+  
     <link href="/assets/vendors/sweetalert/css/sweetalert2.min.css" rel="Stylesheet">
+
+
+    <style>
+        /* 给饼状图设置大小 */
+        .chart-js-container {
+            max-width: 65%;
+            padding-left: 15%;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -103,28 +59,34 @@
             </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li @*class="active"*@>
-                        <a href="#">
+                    <li @*class="active"*@ id="index">
+                        <a href="/Orther/indexAdmin">
                             <i class="ti-panel"></i>
                             <p class="change">首页</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li id="user">
+                        <a href="/User/userAdmin">
                             <i class="ti-widget"></i>
                             <p class="change">业主信息管理</p>
                         </a>
                     </li>
                     <li id="repair">
-                        <a href="/Home/repairAdmin">
+                        <a href="/Repair/repairAdmin">
                             <i class="ti-package"></i>
                             <p class="change">维修信息管理</p>
                         </a>
                     </li>
-                    <li id="Compalin">
-                        <a href="/Home/compailnAdmin">
+                    <li id="charge">
+                        <a href="/Charge/chargeAdmin">
+                            <i class="ti-widget"></i>
+                            <p class="change">收费信息管理</p>
+                        </a>
+                    </li>
+                    <li id="compalin">
+                        <a href="/Compalin/compalinAdmin">
                             <i class="ti-clipboard"></i>
-                            <p class="change">业主投诉信息</p>
+                            <p class="change">业主投诉信息管理</p>
                         </a>
                     </li>
                     <li >
@@ -149,6 +111,7 @@
 
         <!-- 主要预览内容 -->
         <div class="main-panel">
+            <!-- nav为导航栏 -->
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-minimize">
@@ -221,7 +184,7 @@
                 </div>
             </nav>
 
-            <footer class="footer">
+           
                 @RenderBody()
       
 </body>

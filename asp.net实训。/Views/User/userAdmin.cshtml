@@ -55,7 +55,7 @@
                                                             <td>15107685310</td>
                                                             <td>14栋420</td>
                                                             <td class="text-right">
-                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="ti-pencil-alt"></i></a>
+                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target=".example-modal-sm"><i class="ti-pencil-alt"></i></a>
                                                                 <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
                                                             </td>
                                                         </tr>
@@ -83,21 +83,7 @@
                                     <div class="card">
                                         <form id="allInputsFormValidation" class="form-horizontal" action="" method="post" novalidate="">
                                             <div class="content">
-                                                <h4 class="title">基本信息修改</h4>
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主账号
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="required"
-                                                                   required="required" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
+                                                <h4 class="title">新业主注册</h4>
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label class="col-sm-2 control-label">
@@ -173,7 +159,7 @@
                                                 </fieldset>
                                             </div>
                                             <div class="card-footer text-center">
-                                                <button type="submit" class="btn btn-info btn-fill">确认修改</button>
+                                                <button type="submit" class="btn btn-info btn-fill">提交</button>
                                             </div>
                                         </form>
                                     </div>
@@ -192,7 +178,59 @@
 @RenderPage("../Shared/foot.cshtml")
     </footer>
     </div>
-
+<!--small modal-->
+<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">业主信息编辑</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <form id="RegisterValidation" action="" method="">
+                        <div class="content">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    业主姓名
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                            </div>
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    业主邮箱
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                            </div>
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    业主电话
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                            </div>
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    业主地址
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalto="#registerPassword" />
+                            </div>
+                            <div class="category form-category">
+                                <small>*</small> 必填项
+                            </div>
+                            <div class="form-footer text-right">
+                                <button type="submit" class="btn btn-rose btn-fill btn-default">保存更改</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </div>
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
@@ -251,7 +289,7 @@
             $tr = $(this).closest('tr');
 
             var data = table.row($tr).data();
-            alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+            //alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
         });
 
         // 删除记录

@@ -20,6 +20,10 @@ namespace asp.net实训_.Controllers
         {
             return View();
         }
+        public ActionResult handleUser()
+        {
+            return View();
+        }
         public ActionResult compalinAdmin()
         {
             return View();

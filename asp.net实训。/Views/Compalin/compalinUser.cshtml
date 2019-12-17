@@ -4,20 +4,97 @@
     ViewBag.Title = "compalinUser";
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
-
-@RenderPage("../Shared/foot.cshtml")
-    </footer>
-    </div>
+<div class="card">
+    <div class="header">
 
     </div>
-@RenderPage("../Shared/js.cshtml")
-<script type="text/javascript">
-    $(document).ready(function () {
+    <div class="content">
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#pill1" data-toggle="tab" aria-expanded="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">业主投诉</font></font></a>
+                    </li>
+                    <li class="">
+                        <a href="#pill2" data-toggle="tab" aria-expanded="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">投诉记录</font></font></a>
+                    </li>
 
-        $("#change1").text("业主投诉信息"); /*这里只要改text里面的*/
-        $(".active").removeClass("active"); /*这里不用换改*/
-        $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
-    });
-</script>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="pill1">
+                <form method="get" action="/" class="form-horizontal">
+                    <div class="content container">
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label width">投诉员工姓名</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">电话</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">报修内容</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" cols="1" rows="7"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div>
+                            <label class="col-sm-4" style="margin-left:15px;"></label>
+                            <button type="submit" class="btn btn-primary col-md-3"> <i class="icmn-checkmark margin-right-5"></i> 确定投诉 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane " id="pill2">
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>投诉人员</th>
+                                    <th>投诉时间</th>
+                                    <th>是否受理</th>
+                                    <th>投诉处理</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dakota Rice</td>
+                                    <td>Niger</td>
+                                    <td>Oud-Turnhout</td>
+                                    <td class="text-primary" <a href="#">查看处理</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @RenderPage("../Shared/foot.cshtml")
+                </footer>
+            </div>
+
+        </div>
+        @RenderPage("../Shared/js.cshtml")
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#change1").text("业主投诉信息"); /*这里只要改text里面的*/
+                $(".active").removeClass("active"); /*这里不用换改*/
+                $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+            });
+        </script>
 
 

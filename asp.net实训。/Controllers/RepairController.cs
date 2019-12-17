@@ -20,5 +20,9 @@ namespace asp.net实训_.Controllers
         {
             return View();
         }
+        public ActionResult appriseUser()
+        {
+            return View();
+        }
     }
 }

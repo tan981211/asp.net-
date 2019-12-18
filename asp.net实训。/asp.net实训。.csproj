@@ -193,6 +193,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\total.cs" />
+    <Compile Include="Models\users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="s1.designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,4 +1,5 @@
-﻿@model asp.net实训_.RouteConfig
+﻿@*@model asp.net实训_.RouteConfig*@
+@model IEnumerable<asp.net实训_.Models.users>
 
 @{
     ViewBag.Title = "userAdmin";
@@ -13,6 +14,7 @@
                 <div class="card" id="profile-main">
                     <div class="content">
                         <h3>欢迎 管理员小张！</h3>
+                        @*标签选项卡*@
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
                                 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
@@ -48,17 +50,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach (var u1 in Model)
+                                                        {
                                                         <tr>
-                                                            <td>100011</td>
-                                                            <td>张跃</td>
-                                                            <td>1417279498@qq.com</td>
-                                                            <td>15107685310</td>
-                                                            <td>14栋420</td>
+                                                            <td>@u1.userId</td>
+                                                            <td>@u1.userName</td>
+                                                            <td>@u1.userMail</td>
+                                                            <td>@u1.userPhone</td>
+                                                            <td>@u1.userAdress</td>
                                                             <td class="text-right">
-                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target=".example-modal-sm"><i class="ti-pencil-alt"></i></a>
+                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target=".example-modal-sm" data-userid=@u1.userId data-username=@u1.userName data-usermail=@u1.userMail data-useradress=@u1.userAdress data-userphone=@u1.userPhone><i class="ti-pencil-alt"></i></a>
                                                                 <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
                                                             </td>
                                                         </tr>
+                                                        }
                                                     </tbody>
                                                     <tfoot>
                                                         <tr>
@@ -81,87 +86,52 @@
                             <div role="tabpanel" class="tab-pane" id="settings11">
                                 <div class="widget p-25">
                                     <div class="card">
-                                        <form id="allInputsFormValidation" class="form-horizontal" action="" method="post" novalidate="">
+                                        <form id="RegisterValidation" action="" method="">
                                             <div class="content">
-                                                <h4 class="title">新业主注册</h4>
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主密码
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="required"
-                                                                   required="required" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主姓名
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="required"
-                                                                   required="required" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主地址
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="required"
-                                                                   required="required" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主邮箱
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="email"
-                                                                   email="true" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
-
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <label class="col-sm-2 control-label">
-                                                            业主电话
-                                                        </label>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control"
-                                                                   type="text"
-                                                                   name="required"
-                                                                   required="required" />
-                                                        </div>
-                                                        <div class="col-sm-4"><code>*</code></div>
-                                                    </div>
-                                                </fieldset>
-                                            </div>
-                                            <div class="card-footer text-center">
-                                                <button type="submit" class="btn btn-info btn-fill">提交</button>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        业主姓名
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control iname" name="password" id="registerPassword " required="true" value="" />
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        业主邮箱
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control imail" name="password" id="registerPassword" required="true" />
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        业主电话
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control iphone" name="password" id="registerPassword" required="true" />
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        业主地址
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control iadress" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
+                                                </div>
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">
+                                                        业主密码
+                                                        <small>*</small>
+                                                    </label>
+                                                    <input class="form-control ipassword" placeholder="123456" type="password" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
+                                                </div>
+                                                <div class="category form-category">
+                                                    <small>*</small> 必填项
+                                                </div>
+                                                <div class="form-footer text-right">
+                                                    <button type="submit" id="btnInsert" class="btn btn-rose btn-fill btn-default">提交</button>
+                                                </div>
                                             </div>
                                         </form>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -194,34 +164,34 @@
                                     业主姓名
                                     <small>*</small>
                                 </label>
-                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                                <input class="form-control username" name="password" id="registerPassword d1" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主邮箱
                                     <small>*</small>
                                 </label>
-                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                                <input class="form-control usermail" name="password" id="registerPassword" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主电话
                                     <small>*</small>
                                 </label>
-                                <input class="form-control" name="password" id="registerPassword" type="password" required="true" />
+                                <input class="form-control userphone" name="password" id="registerPassword" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主地址
                                     <small>*</small>
                                 </label>
-                                <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalto="#registerPassword" />
+                                <input class="form-control useradress" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
                             </div>
                             <div class="category form-category">
                                 <small>*</small> 必填项
                             </div>
                             <div class="form-footer text-right">
-                                <button type="submit" class="btn btn-rose btn-fill btn-default">保存更改</button>
+                                <button type="submit" id="btnUpdate" class="btn btn-rose btn-fill btn-default">保存更改</button>
                                 <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
@@ -234,6 +204,63 @@
     </div>
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
+    var userid;
+    //模态框动态操作
+    $(".example-modal-sm").on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        ////注意这里的whatever对应前面html代码中button标签下data-whatever属性的后半段
+        //var recipient = button.data('username');
+        var modal = $(this);
+        //对每一位业主的各字段进行赋值
+        userid = button.data('userid');
+        modal.find('.username').val(button.data('username'));
+        modal.find('.userphone').val(button.data('userphone'));
+        modal.find('.usermail').val(button.data('usermail'));
+        modal.find('.useradress').val(button.data('useradress'));
+    })
+    //提交更改操作发送ajax post请求
+    $("#btnUpdate").click(function () {
+        $.ajax({
+            url: "/User/userUpdate",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                userName: $(".username").val(),
+                userMail: $(".usermail").val(),
+                userId: userid,
+                userAdress: $(".useradress").val(),
+                userPhone: $(".userphone").val(),
+            },
+            success: function () {
+                
+            },
+            //error: function (xhr, stutas, response) {
+            //    alert(response + status + xhr.statusText);
+            //},
+        });
+    });
+    //提交插入操作发送ajax post请求
+    $("#btnInsert").click(function () {
+        $.ajax({
+            url: "/User/userInsert",
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                userName: $(".iname").val(),
+                userMail: $(".imail").val(),
+                userAdress: $(".iadress").val(),
+                userPhone: $(".iphone").val(),
+                userPassword:$(".ipassword").val(),
+            },
+            success: function () {
+
+            },
+            //error: function (xhr, stutas, response) {
+            //    alert(response + status + xhr.statusText);
+            //},
+        });
+    })
+
     // 验证
     $().ready(function () {
         $('#allInputsFormValidation').validate();

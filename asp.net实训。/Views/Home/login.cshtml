@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="text-center">
 
-                                            <button onclick="Submit()" class="btn btn-rose btn-wd btn-lg" id="submit">登录</button>
+                                            <button onclick="Submit()" class="btn btn-rose btn-wd btn-lg" id="submit" type="button">登录</button>
                                             <p>
                                                 忘记密码?&nbsp;&nbsp;
                                                 <a href="register.html">
@@ -124,8 +124,20 @@
                
             }/* $("#login").submit();*/
             else {
-                $("#login").attr('action', "/Orther/indexUser");  
-                $("#login").submit();
+
+                $.post(
+                    '/Orther/config', 
+                    { email: $("#TextBox1").val(), password: $("#TextBox2").val() },
+                    function (rsq) {
+                        if (rsq == false) {
+                            alert("邮箱或者密码输入错误");
+                            
+                        }
+                        else {
+                            location.href = "/Orther/indexUser";
+                        }
+                      
+                    },"json")
             }
         }
     </script>

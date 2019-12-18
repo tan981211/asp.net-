@@ -9,20 +9,8 @@ namespace asp.net实训_.Controllers
     //控制器可删除
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult repairUser()
-        {
-            return View();
-        }
-        public ActionResult CompalinUser()
-        {
-            return View();
-        }
-       public ActionResult repairAdmin()
-        {
-            return View();
-        }
-        public ActionResult compailnAdmin()
+
+        public ActionResult login()
         {
             return View();
         }

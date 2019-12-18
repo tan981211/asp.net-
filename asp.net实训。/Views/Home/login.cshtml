@@ -1,0 +1,145 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @RenderPage("../Shared/headCss.cshtml");
+
+    <title></title>
+    
+</head>
+<body>
+    <div>
+        <nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href=" ./index.html ">社区安防管理简易系统</a>
+                </div>
+            </div>
+        </nav>
+        <div class="wrapper wrapper-full-page">
+            <div class="full-page login-page" data-color="blue">
+                <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+                <div class="content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
+
+                                <form method="post"  id="login">
+                                    <div class="card card-login card-hidden">
+                                        <div class="header text-center">
+                                            <h3 class="title">登入</h3>
+                                        </div>
+                                        <div class="content">
+
+                                            <div class="social-line text-center">
+                                                <h5>业主登入</h5>
+                                                </br>
+                                                <a href="#eugen" class="btn btn-just-icon btn-default">
+                                                    <i class="fa fa-wechat"></i>
+                                                </a>
+                                                <a href="#pablo" class="btn btn-just-icon btn-default">
+                                                    <i class="fa fa-qq"></i>
+                                                </a>
+                                                <a href="#eugen" class="btn btn-just-icon btn-default">
+                                                    <i class="fa fa-phone-square"></i>
+                                                </a>
+                                            </div>
+                                            <span class="or-rule">或者</span>
+                                            <h5 class="text-center">社区账号</h5>
+                                            <div class="form-group">
+                                                <label>邮箱地址</label>
+                                                <input type="email" placeholder="Enter email" class="form-control input-no-border" id="TextBox1" name="email">
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>密码</label>
+                                                <input type="password" placeholder="Password" class="form-control input-no-border" id="TextBox2" name="password">
+
+
+                                            </div>
+                                        </div>
+                                        <div class="text-center">
+
+                                            <button onclick="Submit()" class="btn btn-rose btn-wd btn-lg" id="submit" type="button">登录</button>
+                                            <p>
+                                                忘记密码?&nbsp;&nbsp;
+                                                <a href="register.html">
+                                                    <i class="ti-id-badge"></i> <a href="./register.aspx">注册</a>
+                                                </a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        电子科技大学中山学院asp.net实训
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a href="#">2019年12月12日</a>
+
+                        </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/vendors/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function Submit() {
+            var str = $("#TextBox1").val();
+            var str1 = $("#TextBox2").val();
+            if (str == "admin@qq.com" && str1 == "12345") {
+                //$("#submit").submit();
+                $("#login").attr('action', "/Orther/indexAdmin"); 
+                 $("#login").submit();
+               
+            }/* $("#login").submit();*/
+            else {
+
+                $.post(
+                    '/Orther/config', 
+                    { email: $("#TextBox1").val(), password: $("#TextBox2").val() },
+                    function (rsq) {
+                        if (rsq == false) {
+                            alert("邮箱或者密码输入错误");
+                            
+                        }
+                        else {
+                            location.href = "/Orther/indexUser";
+                        }
+                      
+                    },"json")
+            }
+        }
+    </script>
+</body>
+</html>

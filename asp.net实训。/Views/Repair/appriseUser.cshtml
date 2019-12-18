@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "appriseUser";
+    Layout = "~/Views/Shared/mubanUser.cshtml";
+}
+
+<div class="content">
+    <div class="content">
+        <div class="row">
+            <div class="card">
+                <form method="get" action="/" class="form-horizontal">
+                    <div class="header card-header-text">
+                        <h4 class="title">评价</h4>
+                    </div>
+                    <div class="content container">
+                        <fieldset style="margin-bottom:60px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label width">输入星级</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset style="margin-bottom:50px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">评价内容</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" cols="1" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div>
+                            <label class="col-sm-4" style="margin-left:15px;"></label>
+                            <button type="submit" class="btn btn-primary col-md-3"> <i class="icmn-checkmark margin-right-5"></i> 确认评价 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+@RenderPage("../Shared/foot.cshtml")
+    </footer>
+</div>
+
+    </div>
+
+@RenderPage("../Shared/js.cshtml");
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#change1").text("维修信息管理");
+        $(".active").removeClass("active");
+        $("#repair").addClass("active");
+    });
+</script>

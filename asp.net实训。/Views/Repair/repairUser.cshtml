@@ -4,16 +4,129 @@
     ViewBag.Title = "repairUser";
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
-@RenderPage("../Shared/foot.cshtml")
-    </footer>
-    </div>
+<div class="card">
+    <div class="header">
 
     </div>
+    <div class="content">
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                    <li class="active">
+                        <a href="#pill1" data-toggle="tab" aria-expanded="false"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">业主报修</font></font></a>
+                    </li>
+                    <li class="">
+                        <a href="#pill2" data-toggle="tab" aria-expanded="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">维修记录</font></font></a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="pill1">
+                <form method="get" action="" class="form-horizontal">
+                    <div class="content container">
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label width">姓名</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">报修类型</label>
+                                <div class="col-sm-6">
+                                    <input class="form-control"  id="type">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="margin-bottom:40px;">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">报修内容</label>
+                                <div class="col-sm-6">
+                                    <textarea class="form-control" cols="1" rows="7"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div>
+                            <label class="col-sm-4" style="margin-left:15px;"></label>
+                            <button  class="btn btn-primary col-md-3" id="commit"> <i class="icmn-checkmark margin-right-5"></i> 报修 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="tab-pane " id="pill2">
+                <header><p class="text-info">评价</p></header>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th>维修人员</th>
+                                    <th>维修记录</th>
+                                    <th>是否受理</th>
+                                    <th>评价</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dakota Rice</td>
+                                    <td>Niger</td>
+                                    <td>Oud-Turnhout</td>
+                                    <td class="text-primary"><a href="#">评价</a>&nbsp <a data-toggle="modal" data-target=".example-modal-sm">查看评价</a></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+	</div>
+
+<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    @*添加评价*@
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
-    $(document).ready(function () {
+    $("#change1").text("业主维修信息");
+    $("#repair").addClass("active");
+    $("#commit").click(function () {
 
-        $("#change1").text("业主维修信息");
-        $("#repair").addClass("active");
-    });
+        $.post('/Repair/addRepair',
+            { name: $("#name").val(), type: $("#type").val() },
+            function (flag) {
+                if (flag == false) {
+                    alert("网络异常，请重新输入");
+                }
+                else {
+                    alser("保修成功");
+                }
+
+            },"json")
+
+  
+    })
 </script>

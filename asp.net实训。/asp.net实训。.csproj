@@ -163,21 +163,10 @@
     <Content Include="assets\fonts\themify.eot" />
     <Content Include="assets\fonts\themify.ttf" />
     <Content Include="assets\fonts\themify.woff" />
-    <Content Include="safe.dbml">
+    <Content Include="s1.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>safe.designer.cs</LastGenOutput>
+      <LastGenOutput>s1.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </Content>
-    <None Include="safe.dbml.layout">
-      <DependentUpon>safe.dbml</DependentUpon>
-    </None>
-    <Content Include="DataClasses1.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataClasses1.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="DataClasses1.dbml.layout">
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -190,6 +179,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\mubanUser.cshtml" />
+    <Content Include="Views\Home\compalinUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -199,19 +189,15 @@
     <Compile Include="Controllers\OrtherController.cs" />
     <Compile Include="Controllers\RepairController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="DataClasses1.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataClasses1.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\total.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="safe.designer.cs">
+    <Compile Include="s1.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>safe.dbml</DependentUpon>
+      <DependentUpon>s1.dbml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -221,8 +207,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\repairUser.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shared\mubanAdmin.cshtml" />
+    <Content Include="Views\Home\repairAdmin.cshtml" />
+    <Content Include="Views\Home\compailnAdmin.cshtml" />
     <Content Include="Views\Repair\repairUser.cshtml" />
     <Content Include="Views\Repair\repairAdmin.cshtml" />
     <Content Include="Views\Compalin\compalinUser.cshtml" />
@@ -234,11 +223,6 @@
     <Content Include="Views\Orther\indexAdmin.cshtml" />
     <Content Include="Views\Shared\foot.cshtml" />
     <Content Include="Views\Shared\js.cshtml" />
-    <Content Include="Views\Repair\appriseUser.cshtml" />
-    <Content Include="Views\Compalin\handleUser.cshtml" />
-    <Content Include="Views\Home\login.cshtml" />
-    <Content Include="Views\Shared\headCss.cshtml" />
-    <Content Include="Views\Orther\indexUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -248,10 +232,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="s1.dbml.layout">
+      <DependentUpon>s1.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

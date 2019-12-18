@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="safe" Class="safeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-G32IOITO;Initial Catalog=safe;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="safeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.charge" Member="charge">
+    <Type Name="charge">
+      <Column Name="chargeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="chargeType" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="chargeDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="isPay" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="chargeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="user_charge" Member="user" ThisKey="userId" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.comment" Member="comment">
+    <Type Name="comment">
+      <Column Name="commentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="commentDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="commentContext" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="commentUrl" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="user_comment" Member="user" ThisKey="userId" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.complain" Member="complain">
+    <Type Name="complain">
+      <Column Name="complainId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="complainType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="complainDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="complainDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="user_complain" Member="user" ThisKey="userId" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.notice" Member="notice">
+    <Type Name="notice">
+      <Column Name="noticeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="noticeTitle" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="noticeText" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="noticeDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.parking" Member="parking">
+    <Type Name="parking">
+      <Column Name="parkingId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parkingBrand" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="parkingType" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="parkingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="user_parking" Member="user" ThisKey="userId" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.repairAdmin" Member="repairAdmin">
+    <Type Name="repairAdmin">
+      <Column Name="repairId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="repperName" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="repairType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="repairedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="repairingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="repperPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="isAccept" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="isSolve" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="evaluateText" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="user_repairAdmin" Member="user" ThisKey="userId" OtherKey="userId" Type="user" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[user]" Member="user">
+    <Type Name="user">
+      <Column Name="userId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="userName" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="userEmail" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="userPhone" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="userAddress" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="userPassword" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="user_charge" Member="charge" ThisKey="userId" OtherKey="userId" Type="charge" />
+      <Association Name="user_comment" Member="comment" ThisKey="userId" OtherKey="userId" Type="comment" />
+      <Association Name="user_complain" Member="complain" ThisKey="userId" OtherKey="userId" Type="complain" />
+      <Association Name="user_parking" Member="parking" ThisKey="userId" OtherKey="userId" Type="parking" />
+      <Association Name="user_repairAdmin" Member="repairAdmin" ThisKey="userId" OtherKey="userId" Type="repairAdmin" />
+    </Type>
+  </Table>
+</Database>

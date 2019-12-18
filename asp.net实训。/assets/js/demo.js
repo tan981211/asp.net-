@@ -302,7 +302,7 @@ var demo = {
          });
 
          $('.datepicker').datetimepicker({
-            format: 'MM/DD/YYYY',
+            format: 'YYYY/MM/DD',
             icons: {
                 time: "fa fa-clock-o",
                 date: "fa fa-calendar",
@@ -538,9 +538,10 @@ var demo = {
 
     	}else if(type === 'success-message'){
         	swal({
-                title: "Good job!",
-                text: "You clicked the button!",
-                buttonsStyling: false,
+                title: "干得漂亮!",
+                text: "推送成功",
+                timer: 2000,
+                buttonsStyling: true,
                 confirmButtonClass: "btn btn-success",
                 type: "success"
             }).catch(swal.noop);

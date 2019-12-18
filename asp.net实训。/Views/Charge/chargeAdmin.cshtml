@@ -5,18 +5,121 @@
     Layout = "~/Views/Shared/mubanAdmin.cshtml";
 }
 
+<!-- 主体内容 -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <form method="" action="" class="form-horizontal">
+                        <div class="header card-header-text">
+                            <h4 class="title">收费发布填写</h4>
+                        </div>
+                        <div class="content">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">收费发送方案</label>
+                                    <div class="col-sm-2">
+                                        <div class="select">
+                                            <select class="form-control">
+                                                <option>选择一个选项</option>
+                                                <option>全部业主</option>
+                                                <option>单个业主</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block">决定是否群发收费信息</span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">业主账号</label>
+                                    <div class="col-sm-2">
+                                        <div class="select ">
+                                            <select class="form-control " disabled>
+                                                <option>选择一个选项</option>
+                                                <option>10000</option>
+                                                <option>10001</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block">选择哪个业主</span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">收费类型</label>
+                                    <div class="col-sm-2">
+                                        <div class="select">
+                                            <select class="form-control">
+                                                <option>选择一个选项</option>
+                                                <option>水费</option>
+                                                <option>物业费</option>
+                                                <option>电费</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">收费时间</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control datepicker" value="2016/10/10" />
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">收费备注</label>
+                                    <div class="col-sm-6">
+                                        <textarea class="form-control" placeholder="这里填写你的备注信息" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                        </div>
+
+                    </form>
+                    <div class="form-footer">
+                        <div class="card">
+                            <div class="content text-center">
+
+                                <button class="btn btn-primary btn-fill" onclick="demo.showSwal('success-message')" type="submit">推送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @RenderPage("../Shared/foot.cshtml")
     </footer>
     </div>
 
     </div>
 @RenderPage("../Shared/js.cshtml")
+
+<script src="/assets/js/demo.js"></script>
+<script src="/assets/vendors/dropzone/dropzone.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
 
         $("#change1").text("业主收费信息管理"); /*这里只要改text里面的*/
-        $(".active").removeClass("active"); /*这里不用换改*/
         $("#charge").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+
+
+        
+        // Init Sliders
+        demo.initFormExtendedSliders();
+        // Init DatetimePicker
+        demo.initFormExtendedDatetimepickers();
     });
 </script>
 

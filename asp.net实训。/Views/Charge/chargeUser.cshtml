@@ -5,6 +5,50 @@
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 
+<!-- 主体内容 -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <h4 class="title">业主个体收费记录</h4>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>收费记录编号</th>
+                                        <th>收费类型</th>
+                                        <th>收费备注</th>
+                                        <th>收费时间</th>
+                                        <th>是否缴费</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>10001</td>
+                                        <td>水费</td>
+                                        <td>请在这个月交齐</td>
+                                        <td>2019-11-25</td>
+                                        <td> 否 </td>
+                                        <td class="text-primary">
+                                            <button class="btn btn-primary  btn-fill">
+                                                缴费
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @RenderPage("../Shared/foot.cshtml")
     </footer>
     </div>
@@ -15,7 +59,6 @@
     $(document).ready(function () {
 
         $("#change1").text("业主收费信息"); /*这里只要改text里面的*/
-        $(".active").removeClass("active"); /*这里不用换改*/
         $("#charge").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
     });
 </script>

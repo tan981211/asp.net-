@@ -73,12 +73,12 @@
     $(function () {
         $.ajax({
             url: "/Orther/indexBack",
-            type: "post",
+            type: "get",
             dataType: "json",
             success: function (data) {
                 numPie[0] = data.repairSolveNum;
                 numPie[1] = data.repairUnSolveNum;
-                alert("success" + numPie + data.chargeNum);
+                //alert("success" + numPie + data.chargeNum);
                 // 饼状图
                 if ($('#pieChart')[0]) {
                     //使用jQuery的.Get（）方法获取jQuery的上下文。

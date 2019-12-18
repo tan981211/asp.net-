@@ -24,23 +24,29 @@ namespace asp.net实训_.Controllers
         {
             return View();
         }
+
+        //管理员首页页面加载发送ajax请求返回json数据
         public JsonResult indexBack()
         {
             total t1=new total();
-            t1.chargeNum = new List<int>();
-            t1.unchargeNum = new List<int>();
-            t1.compalinNum = new List<int>();
-            t1.repairSolveNum = db.repairAdmin.Where(d => d.isSolve).Count();
-            t1.repairUnSolveNum = db.repairAdmin.Where(d => !d.isSolve).Count();
-            var cn = db.charge.Where(p => p.isPay).GroupBy(d => d.chargeDate.Month).Select(p => p.Count()).ToList();
-            var ucn = db.charge.Where(p => !p.isPay).GroupBy(d => d.chargeDate.Month).Select(p=>p.Count()).ToList();
-            var cnn = db.complain.GroupBy(d => d.complainDate.Month).Select(p=>p.Count()).ToList();
-            foreach(int i in cn)
-                t1.chargeNum.Add(i);
-            foreach (int i in ucn)
-                t1.unchargeNum.Add(i);
-            foreach (int i in cnn)
-                t1.compalinNum.Add(i);
+            //数组类型初始化
+            t1.chargeNum = new int[6];
+            t1.unchargeNum = new int[6];
+            t1.compalinNum = new int[12];
+            //linq查询所需数据
+            t1.repairSolveNum = db.repairAdmin.Where(d => d.isSolve).Count();//维修解决人数
+            t1.repairUnSolveNum = db.repairAdmin.Where(d => !d.isSolve).Count(); //维修未解决人数
+            var cn = db.charge.Where(p => p.isPay).GroupBy(d => d.chargeDate.Month).Select(p => new { month = p.Select(g => g.chargeDate.Month).First(), count = p.Count() }).ToList();//每月收费人数
+            var ucn = db.charge.Where(p => !p.isPay).GroupBy(d => d.chargeDate.Month).Select(p => new { month = p.Select(g => g.chargeDate.Month).First(), count = p.Count() }).ToList(); //每月欠费人数
+            var cnn = db.complain.GroupBy(d => d.complainDate.Month).Select(p => new { month = p.Select(g => g.complainDate.Month).First(), count = p.Count() }).ToList(); //每页投诉人数
+            //将linq查询所需数据存入model
+            for (int i = 0; i < cn.Count; i++)
+                t1.chargeNum[cn[i].month - 1] = cn[i].count;
+            for (int i = 0; i < ucn.Count; i++)
+                t1.unchargeNum[ucn[i].month - 1] = ucn[i].count;
+            for (int i = 0; i < cnn.Count; i++)
+                t1.compalinNum[cnn[i].month - 1] = cnn[i].count;
+            //返回json格式数据
             return Json(t1, "text/html", JsonRequestBehavior.AllowGet);
         }
     }

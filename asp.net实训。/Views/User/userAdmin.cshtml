@@ -52,17 +52,17 @@
                                                     <tbody>
                                                         @foreach (var u1 in Model)
                                                         {
-                                                        <tr>
-                                                            <td>@u1.userId</td>
-                                                            <td>@u1.userName</td>
-                                                            <td>@u1.userMail</td>
-                                                            <td>@u1.userPhone</td>
-                                                            <td>@u1.userAdress</td>
-                                                            <td class="text-right">
-                                                                <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target=".example-modal-sm" data-userid=@u1.userId data-username=@u1.userName data-usermail=@u1.userMail data-useradress=@u1.userAdress data-userphone=@u1.userPhone><i class="ti-pencil-alt"></i></a>
-                                                                <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr>
+                                                                <td>@u1.userId</td>
+                                                                <td>@u1.userName</td>
+                                                                <td>@u1.userMail</td>
+                                                                <td>@u1.userPhone</td>
+                                                                <td>@u1.userAdress</td>
+                                                                <td class="text-right">
+                                                                    <a href="#" class="btn btn-simple btn-warning btn-icon edit" data-toggle="modal" data-target=".example-modal-sm" data-userid=@u1.userId data-username=@u1.userName data-usermail=@u1.userMail data-useradress=@u1.userAdress data-userphone=@u1.userPhone><i class="ti-pencil-alt"></i></a>
+                                                                    <a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="ti-close"></i></a>
+                                                                </td>
+                                                            </tr>
                                                         }
                                                     </tbody>
                                                     <tfoot>
@@ -131,7 +131,7 @@
                                                 </div>
                                             </div>
                                         </form>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -232,7 +232,7 @@
                 userPhone: $(".userphone").val(),
             },
             success: function () {
-                
+
             },
             //error: function (xhr, stutas, response) {
             //    alert(response + status + xhr.statusText);
@@ -250,7 +250,7 @@
                 userMail: $(".imail").val(),
                 userAdress: $(".iadress").val(),
                 userPhone: $(".iphone").val(),
-                userPassword:$(".ipassword").val(),
+                userPassword: $(".ipassword").val(),
             },
             success: function () {
 

@@ -26,13 +26,13 @@ namespace asp.net实训_.Controllers
         {
             var u1 = db.user.Select(p => new users { userId = p.userId, userName = p.userName, userMail = p.userEmail, userPhone = p.userPhone, userAdress = p.userAddress, userPassword = p.userPassword });
             return View(u1.ToList());
-            
+
         }
         //业主修改
         public void userUpdate(users u)
         {
             var u1 = db.user.Where(p => p.userId == u.userId);
-            foreach(user us in u1)
+            foreach (user us in u1)
             {
                 us.userName = u.userName;
                 us.userPhone = u.userPhone;
@@ -60,8 +60,8 @@ namespace asp.net实训_.Controllers
                 db.user.InsertOnSubmit(u1);
                 db.SubmitChanges();
             }
-           
-            return Json("");
+
+            return "";
         }
     }
 }

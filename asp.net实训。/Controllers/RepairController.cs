@@ -18,10 +18,12 @@ namespace asp.net实训_.Controllers
             repairAdmin repair = new repairAdmin();
             repair.repairType = type;
             repair.repairingDate = DateTime.Now;
+            repair.repperName = "**";
+            repair.repairingDate = DateTime.Now;
+            repair.repperPhone = "****";
             repair.isAccept = false;
             repair.isSolve = false;
             repair.userId = getId();
-            repair.repairId = 0;
             db.repairAdmin.InsertOnSubmit(repair);
             db.SubmitChanges();
         }

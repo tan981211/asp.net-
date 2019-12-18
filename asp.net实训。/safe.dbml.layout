@@ -1,4 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="safe">
   <DataContextMoniker Name="/safeDataContext" />
+  <nestedChildShapes>
+    <classShape Id="809c8dfa-5110-4d8f-806a-c8b0508916fa" absoluteBounds="3.625, 2.375, 2, 1.9068933105468751">
+      <DataClassMoniker Name="/safeDataContext/user" />
+      <nestedChildShapes>
+        <elementListCompartment Id="74f935d9-e40b-4961-a235-df7d6c079116" absoluteBounds="3.64, 2.835, 1.9700000000000002, 1.346893310546875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ab6962ff-1b51-4795-982c-3446b0964ea9" absoluteBounds="0.875, 1.25, 2, 2.6460697428385416">
+      <DataClassMoniker Name="/safeDataContext/repairAdmin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3c7d7e6c-2d78-4847-8fd8-efb404e709cb" absoluteBounds="0.89000000000000012, 1.71, 1.9700000000000002, 2.0860697428385415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 3.13553487141927); (2.875 : 3.13553487141927)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/safeDataContext/user/user_repairAdmin" />
+      <nodes>
+        <classShapeMoniker Id="809c8dfa-5110-4d8f-806a-c8b0508916fa" />
+        <classShapeMoniker Id="ab6962ff-1b51-4795-982c-3446b0964ea9" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
 </ordesignerObjectsDiagram>

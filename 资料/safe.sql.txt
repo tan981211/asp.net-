@@ -1,0 +1,260 @@
+USE [safe]
+GO
+/****** Object:  Table [dbo].[charge]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[charge](
+	[chargeId] [int] IDENTITY(10000,1) NOT NULL,
+	[chargeType] [nchar](10) NOT NULL,
+	[chargeDesc] [nvarchar](max) NULL,
+	[isPay] [bit] NOT NULL,
+	[chargeDate] [datetime] NOT NULL,
+	[userId] [int] NOT NULL,
+ CONSTRAINT [PK_charge] PRIMARY KEY CLUSTERED 
+(
+	[chargeId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[comment]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[comment](
+	[commentId] [int] IDENTITY(10000,1) NOT NULL,
+	[commentDate] [datetime] NOT NULL,
+	[commentContext] [nvarchar](max) NOT NULL,
+	[commentUrl] [nvarchar](max) NOT NULL,
+	[userId] [int] NOT NULL,
+ CONSTRAINT [PK_comment] PRIMARY KEY CLUSTERED 
+(
+	[commentId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[complain]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[complain](
+	[complainId] [int] IDENTITY(10000,1) NOT NULL,
+	[complainType] [nvarchar](50) NOT NULL,
+	[complainDesc] [nvarchar](max) NULL,
+	[userId] [int] NOT NULL,
+	[complainDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_complain] PRIMARY KEY CLUSTERED 
+(
+	[complainId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[notice]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[notice](
+	[noticeId] [int] NOT NULL,
+	[noticeTitle] [nvarchar](50) NOT NULL,
+	[noticeText] [nvarchar](max) NOT NULL,
+	[noticeDate] [datetime] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[parking]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[parking](
+	[parkingId] [int] IDENTITY(10000,1) NOT NULL,
+	[parkingBrand] [nchar](10) NOT NULL,
+	[parkingType] [nchar](10) NULL,
+	[parkingDate] [datetime] NOT NULL,
+	[userId] [int] NOT NULL,
+ CONSTRAINT [PK_Parking] PRIMARY KEY CLUSTERED 
+(
+	[parkingId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[repairAdmin]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[repairAdmin](
+	[repairId] [int] IDENTITY(10000,1) NOT NULL,
+	[userId] [int] NOT NULL,
+	[repperName] [nchar](10) NOT NULL,
+	[repairType] [nvarchar](50) NOT NULL,
+	[repairedDate] [datetime] NOT NULL,
+	[repairingDate] [datetime] NOT NULL,
+	[repperPhone] [nvarchar](50) NOT NULL,
+	[isAccept] [bit] NOT NULL,
+	[isSolve] [bit] NOT NULL,
+	[evaluateText] [varchar](max) NULL,
+ CONSTRAINT [PK_repairAdmin] PRIMARY KEY CLUSTERED 
+(
+	[repairId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[user]    Script Date: 2019/12/18 19:50:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[user](
+	[userId] [int] IDENTITY(10000,1) NOT NULL,
+	[userName] [nchar](10) NOT NULL,
+	[userEmail] [nvarchar](50) NOT NULL,
+	[userPhone] [nvarchar](50) NOT NULL,
+	[userAddress] [nvarchar](50) NOT NULL,
+	[userPassword] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_user] PRIMARY KEY CLUSTERED 
+(
+	[userId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [IX_user] UNIQUE NONCLUSTERED 
+(
+	[userEmail] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[charge]  WITH CHECK ADD  CONSTRAINT [FK_charge_user] FOREIGN KEY([userId])
+REFERENCES [dbo].[user] ([userId])
+GO
+ALTER TABLE [dbo].[charge] CHECK CONSTRAINT [FK_charge_user]
+GO
+ALTER TABLE [dbo].[comment]  WITH CHECK ADD  CONSTRAINT [FK_comment_user] FOREIGN KEY([userId])
+REFERENCES [dbo].[user] ([userId])
+GO
+ALTER TABLE [dbo].[comment] CHECK CONSTRAINT [FK_comment_user]
+GO
+ALTER TABLE [dbo].[complain]  WITH CHECK ADD  CONSTRAINT [FK_complain_user] FOREIGN KEY([userId])
+REFERENCES [dbo].[user] ([userId])
+GO
+ALTER TABLE [dbo].[complain] CHECK CONSTRAINT [FK_complain_user]
+GO
+ALTER TABLE [dbo].[parking]  WITH CHECK ADD  CONSTRAINT [FK_Parking_user] FOREIGN KEY([userId])
+REFERENCES [dbo].[user] ([userId])
+GO
+ALTER TABLE [dbo].[parking] CHECK CONSTRAINT [FK_Parking_user]
+GO
+ALTER TABLE [dbo].[repairAdmin]  WITH CHECK ADD  CONSTRAINT [FK_repairAdmin_user] FOREIGN KEY([userId])
+REFERENCES [dbo].[user] ([userId])
+GO
+ALTER TABLE [dbo].[repairAdmin] CHECK CONSTRAINT [FK_repairAdmin_user]
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'收费记录id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'chargeId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'收费类型' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'chargeType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'收费备注' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'chargeDesc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否缴费' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'isPay'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'收费时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'chargeDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键，与user表建立关系' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'收费信息记录表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'charge'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发布信息id（每一条信息对应一个id）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment', @level2type=N'COLUMN',@level2name=N'commentId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每天信息发布的时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment', @level2type=N'COLUMN',@level2name=N'commentDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条发布信息的内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment', @level2type=N'COLUMN',@level2name=N'commentContext'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条发布信息存储的文件路径' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment', @level2type=N'COLUMN',@level2name=N'commentUrl'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键，与user表建立关系' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'社区论坛表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'comment'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'投诉记录id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain', @level2type=N'COLUMN',@level2name=N'complainId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'投诉类型' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain', @level2type=N'COLUMN',@level2name=N'complainType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条投诉记录的备注' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain', @level2type=N'COLUMN',@level2name=N'complainDesc'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键，与user表建立关系' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'投诉时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain', @level2type=N'COLUMN',@level2name=N'complainDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'投诉记录表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'complain'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发布人id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'notice', @level2type=N'COLUMN',@level2name=N'noticeId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发布标题' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'notice', @level2type=N'COLUMN',@level2name=N'noticeTitle'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发布内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'notice', @level2type=N'COLUMN',@level2name=N'noticeText'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'发布时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'notice', @level2type=N'COLUMN',@level2name=N'noticeDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'公告发布表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'notice'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条停车记录id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking', @level2type=N'COLUMN',@level2name=N'parkingId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'停车识别的车牌号' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking', @level2type=N'COLUMN',@level2name=N'parkingBrand'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每次停车的车型识别进行记录' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking', @level2type=N'COLUMN',@level2name=N'parkingType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条停车记录的时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking', @level2type=N'COLUMN',@level2name=N'parkingDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键，与user表建立关系' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'停车信息表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'parking'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'维修记录id' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repairId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'外键，与user表建立关系' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'维修人员姓名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repperName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'维修类型/种类' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repairType'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条记录的报修日期时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repairedDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条记录的维修日期时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repairingDate'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'维修人员的电话号码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'repperPhone'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否受理（布尔值）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'isAccept'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'是否解决（布尔值）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'isSolve'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'每条维修记录评价' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin', @level2type=N'COLUMN',@level2name=N'evaluateText'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'维修信息管理（维修记录表）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'repairAdmin'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主id
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userId'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主姓名' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userName'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主邮箱' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userEmail'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主电话' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userPhone'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主地址' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userAddress'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主密码（管理员给每个业主一条账号和初始密码，业主可更改密码）' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user', @level2type=N'COLUMN',@level2name=N'userPassword'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'业主表' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'user'
+GO

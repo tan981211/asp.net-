@@ -86,48 +86,48 @@
                             <div role="tabpanel" class="tab-pane" id="settings11">
                                 <div class="widget p-25">
                                     <div class="card">
-                                        <form id="RegisterValidation" action="" method="">
+                                        <form id="RegisterValidation" action="/User/userInsert" method="post">
                                             <div class="content">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         业主姓名
                                                         <small>*</small>
                                                     </label>
-                                                    <input class="form-control iname" name="password" id="registerPassword " required="true" value="" />
+                                                    <input class="form-control iname" name="iname" id="registerPassword " required="true" value="" />
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         业主邮箱
                                                         <small>*</small>
                                                     </label>
-                                                    <input class="form-control imail" name="password" id="registerPassword" required="true" />
+                                                    <input class="form-control imail" name="imail" type="email" id="registerPassword" required="true" />
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         业主电话
                                                         <small>*</small>
                                                     </label>
-                                                    <input class="form-control iphone" name="password" id="registerPassword" required="true" />
+                                                    <input class="form-control iphone" name="iphone" type="" id="registerPassword" required="true" />
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         业主地址
                                                         <small>*</small>
                                                     </label>
-                                                    <input class="form-control iadress" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
+                                                    <input class="form-control iadress" name="iadress"  @*id="registerPasswordConfirmation"*@ required="true" @*equalto="#registerPassword"*@ />
                                                 </div>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">
                                                         业主密码
                                                         <small>*</small>
                                                     </label>
-                                                    <input class="form-control ipassword" placeholder="123456" type="password" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
+                                                    <input class="form-control ipassword" placeholder="123456" value="123456" type="" name="ipassword" id="registerPasswordConfirmation" required="true" @*equalto="#registerPassword"*@ />
                                                 </div>
                                                 <div class="category form-category">
                                                     <small>*</small> 必填项
                                                 </div>
                                                 <div class="form-footer text-right">
-                                                    <button type="submit" id="btnInsert" class="btn btn-rose btn-fill btn-default">提交</button>
+                                                    <button type="submit" @*id="btnInsert"*@ class="btn btn-rose btn-fill btn-default">提交</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -157,41 +157,48 @@
             </div>
             <div class="modal-body">
                 <div class="card">
-                    <form id="RegisterValidation" action="" method="">
+                    <form id="RegisterValidation" action="/User/userUpdate" method="post">
                         <div class="content">
+                            <div class="form-group label-floating">
+                                <label class="control-label">
+                                    业主编号
+                                    <small>*</small>
+                                </label>
+                                <input class="form-control userid" name="userid" id="registerPassword d1" required="true" />
+                            </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主姓名
                                     <small>*</small>
                                 </label>
-                                <input class="form-control username" name="password" id="registerPassword d1" required="true" />
+                                <input class="form-control username" name="username" id="registerPassword d1" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主邮箱
                                     <small>*</small>
                                 </label>
-                                <input class="form-control usermail" name="password" id="registerPassword" required="true" />
+                                <input class="form-control usermail" type="email" name="usermail" id="registerPassword" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主电话
                                     <small>*</small>
                                 </label>
-                                <input class="form-control userphone" name="password" id="registerPassword" required="true" />
+                                <input class="form-control userphone" name="userphone" type="number" id="registerPassword" required="true" />
                             </div>
                             <div class="form-group label-floating">
                                 <label class="control-label">
                                     业主地址
                                     <small>*</small>
                                 </label>
-                                <input class="form-control useradress" name="password_confirmation" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
+                                <input class="form-control useradress" name="useradress" id="registerPasswordConfirmation" required="true" equalto="#registerPassword" />
                             </div>
                             <div class="category form-category">
                                 <small>*</small> 必填项
                             </div>
                             <div class="form-footer text-right">
-                                <button type="submit" id="btnUpdate" class="btn btn-rose btn-fill btn-default">保存更改</button>
+                                <button type="submit" @*id="btnUpdate"*@ class="btn btn-rose btn-fill btn-default">保存更改</button>
                                 <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
                             </div>
                         </div>
@@ -213,6 +220,7 @@
         var modal = $(this);
         //对每一位业主的各字段进行赋值
         userid = button.data('userid');
+        modal.find('.userid').val(button.data('userid'));
         modal.find('.username').val(button.data('username'));
         modal.find('.userphone').val(button.data('userphone'));
         modal.find('.usermail').val(button.data('usermail'));
@@ -252,9 +260,13 @@
                 userPhone: $(".iphone").val(),
                 userPassword: $(".ipassword").val(),
             },
-            success: function () {
-
+            success: function (data) {
+              
             },
+            error:function()
+            {
+                alert("邮箱不能重复注册");
+            }
             //error: function (xhr, stutas, response) {
             //    alert(response + status + xhr.statusText);
             //},

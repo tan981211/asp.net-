@@ -28,40 +28,82 @@ namespace asp.net实训_.Controllers
             return View(u1.ToList());
 
         }
+        ////业主修改
+        //public ActionResult userUpdate(users u)
+        //{
+        //    var u1 = db.user.Where(p => p.userId == u.userId);
+        //    foreach (user us in u1)
+        //    {
+        //        us.userName = u.userName;
+        //        us.userPhone = u.userPhone;
+        //        us.userAddress = u.userAdress;
+        //        us.userEmail = u.userMail;
+        //    }
+        //    db.SubmitChanges();
+        //    return View("userAdmin");
+        //}
+
+
         //业主修改
-        public void userUpdate(users u)
+        public ActionResult userUpdate()
         {
-            var u1 = db.user.Where(p => p.userId == u.userId);
+            var u1 = db.user.Where(p => p.userId == int.Parse(Request.Form["userid"]));
             foreach (user us in u1)
             {
-                us.userName = u.userName;
-                us.userPhone = u.userPhone;
-                us.userAddress = u.userAdress;
-                us.userEmail = u.userMail;
+                us.userName = Request.Form["username"];
+                us.userPhone = Request.Form["userphone"];
+                us.userAddress = Request.Form["useradress"];
+                us.userEmail = Request.Form["usermail"];
             }
             db.SubmitChanges();
+            return RedirectToAction("userAdmin");
         }
+        ////业主插入
+        //public ActionResult userInsert(users u)
+        //{
+        //    var uh = db.user.Where(p => p.userEmail == u.userMail);
+        //    if (uh != null && uh.Count() > 0)
+        //    {
+                
+        //    }
+        //    else
+        //    {
+        //        user u1 = new user();
+        //        u1.userEmail = u.userMail;
+        //        u1.userAddress = u.userAdress;
+        //        u1.userName = u.userName;
+        //        u1.userPassword = u.userPassword;
+        //        u1.userPhone = u.userPhone;
+        //        db.user.InsertOnSubmit(u1);
+        //        db.SubmitChanges();
+                
+        //    }
+        //    return RedirectToAction("userAdmin");
+            
+        //}
+
         //业主插入
-        public string userInsert(users u)
+        public ActionResult userInsert()
         {
-            var uh = db.user.Where(p => p.userEmail == u.userMail);
+            var uh = db.user.Where(p => p.userEmail == Request.Form["imail"]);
             if (uh != null && uh.Count() > 0)
             {
-                return "失败";
+
             }
             else
             {
                 user u1 = new user();
-                u1.userEmail = u.userMail;
-                u1.userAddress = u.userAdress;
-                u1.userName = u.userName;
-                u1.userPassword = u.userPassword;
-                u1.userPhone = u.userPhone;
+                u1.userEmail = Request.Form["imail"];
+                u1.userAddress = Request.Form["iadress"];
+                u1.userName = Request.Form["iname"];
+                u1.userPassword = Request.Form["ipassword"];
+                u1.userPhone = Request.Form["iphone"];
                 db.user.InsertOnSubmit(u1);
                 db.SubmitChanges();
+
             }
-       
-            return "";
+            return RedirectToAction("userAdmin");
+
         }
     }
 }

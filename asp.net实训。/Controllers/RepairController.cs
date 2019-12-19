@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using asp.net实训_.Models;
 
 namespace asp.net实训_.Controllers
 {
@@ -20,10 +21,9 @@ namespace asp.net实训_.Controllers
             repair.repairingDate = DateTime.Now;
             repair.repperName = "**";
             repair.repairingDate = DateTime.Now;
-            repair.repperPhone = "****";
             repair.isAccept = false;
             repair.isSolve = false;
-            repair.userId = getId();
+            repair.userId = 10000;
             db.repairAdmin.InsertOnSubmit(repair);
             db.SubmitChanges();
         }
@@ -35,7 +35,6 @@ namespace asp.net实训_.Controllers
             if(Request.Cookies["email"] != null)
                  s1 = Request.Cookies["email"].Value;
             user data = db.user.Where(p => p.userEmail == s1).First();
-            
             return data.userId;
         }
 
@@ -43,16 +42,14 @@ namespace asp.net实训_.Controllers
         // GET: Repair
         public ActionResult repairUser()
         {
-            return View();
+            var data = db.repairAdmin.Select(p => new evaluate(p.repperName, p.repairedDate, p.repairingDate, p.isAccept, p.isSolve,p.evaluateText));
+            return View(data);
         }
         public ActionResult repairAdmin()
         {
             return View();
         }
-        public ActionResult appriseUser()
-        {
-            return View();
-        }
+
         public JsonResult addRepair(string name,string type)
         {
             bool flag=false;
@@ -64,11 +61,25 @@ namespace asp.net实训_.Controllers
             }
             catch(Exception e)
             {
-                flag = false;
-                return Json(flag);
+                return Json(false);
             }
             
         }
-   
+        public JsonResult addEval(DateTime date,string evaluaText)
+        {
+            var data = db.repairAdmin.Where(p => p.repairedDate == date);
+            if (data != null)
+            {
+                foreach(repairAdmin r in data)
+                {
+                    r.evaluateText = evaluaText;
+                }
+                db.SubmitChanges();
+                return Json(true);
+            }
+            return Json(false);
+        }
+
+
     }
 }

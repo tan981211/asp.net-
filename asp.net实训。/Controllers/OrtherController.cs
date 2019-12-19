@@ -46,12 +46,11 @@ namespace asp.net实训_.Controllers
                     HttpCookie cookie = new HttpCookie("email");
                     cookie.Value = email;
                     cookie.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(cookie);
-
-                    rsq = true;
-                    return Json(rsq);
-                  
+                    Response.Cookies.Add(cookie);   
                 }
+                Response.Cookies["email"].Value = email;
+                rsq = true;
+                return Json(rsq);
             } 
                 rsq = false;
                 return Json(rsq);

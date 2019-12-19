@@ -1,11 +1,11 @@
-﻿@model asp.net实训_.RouteConfig
-
+﻿@*@model asp.net实训_.RouteConfig*@
+@model IEnumerable<asp.net实训_.Models.evaluate>
 @{
     ViewBag.Title = "repairUser";
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 <div class="card">
-    
+
     <div class="content">
         <div class="nav-tabs-navigation">
             <div class="nav-tabs-wrapper">
@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">报修类型</label>
                                 <div class="col-sm-6">
-                                    <input class="form-control"  id="type">
+                                    <input class="form-control" id="type">
                                 </div>
                             </div>
                         </fieldset>
@@ -50,7 +50,7 @@
                         </fieldset>
                         <div>
                             <label class="col-sm-4" style="margin-left:15px;"></label>
-                            <button  class="btn btn-primary col-md-3" id="commit"> <i class="icmn-checkmark margin-right-5"></i> 报修 </button>
+                            <button class="btn btn-primary col-md-3" id="commit"> <i class="icmn-checkmark margin-right-5"></i> 报修 </button>
                         </div>
                     </div>
                 </form>
@@ -63,21 +63,31 @@
                             <thead class="text-primary">
                                 <tr>
                                     <th>维修人员</th>
-                                    <th>维修记录</th>
+                                    <th>维修时间</th>
+                                    <th>结束时间</th>
                                     <th>是否受理</th>
+                                    <th>是否解决</th>
                                     <th>评价</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary"><a href="#">评价</a>&nbsp <a data-toggle="modal" data-target=".example-modal-sm">查看评价</a></td>
-                                </tr>
 
-                            </tbody>
+                                @foreach (var data in Model)
+                                {
+                                <tr>
+                                    <td>@data.name</td>
+                                    <td>@data.repairDate</td>
+                                    <td>@data.repairingDate</td>
+                                    <td>@data.isAccetp</td>
+                                    <td>@data.isSolve</td>
+                                    <td class="text-primary" ><a href="#" data-toggle="modal" data-target="#myModel " class="evla" data-Date="@data.repairDate">评价</a>&nbsp
+                                <a data-toggle="modal" data-target=".example-modal-sm " class="dianji">查看评价 <p class="hide" >@data.evaluateText</p> </a></td>
+                                    
+                                </tr>
+                                        }
+                      
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -86,36 +96,57 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 
 
     </footer>
-<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        @*添加评价*@
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     </div>
 
     </div>
+@*查看评价模态框*@
+<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">您的评价</h4>
+            </div>
+            <div class="modal-body">
+                <p id="tianjia">
+                    @*添加评价*@
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*评价模态框*@
+<div class="modal fade example-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="myModel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" cols="1" rows="5" id="text"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info"  id="evla1" onclick="update()">评价</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">
     $("#change1").text("业主维修信息");
     $("#repair").addClass("active");
+
     $("#commit").click(function () {
 
         $.post('/Repair/addRepair',
@@ -125,11 +156,59 @@
                     alert("网络异常，请重新输入");
                 }
                 else {
-                    alser("保修成功");
+                    alert("报修成功");
                 }
 
-            },"json")
+            }, "json")
+    });
 
-  
+
+    //设置评价的值
+    $(".dianji").click(function () {
+        var data = $(this).children().text();
+        //data = $(this).parent().prevAll().eq(3).text();
+        $("#tianjia").text(data)
     })
+
+
+    //$(".example-modal").on('show.bs.modal', function (event) {
+    //    var a = $(event.relatedTarget);
+    //    var date = a.data["Date"];
+     
+    //    $("#evla1").click(function () {
+    //        var evaluateText = $("#text").valu();
+    //        //$.post(
+    //        //    '/Repair/addEval',
+    //        //    { Date: date, eval: evaluateText },
+    //        //    function (flag) {
+    //        //        if (flag == false) {
+    //        //            alert("网络异常，请重新评价");
+    //        //        }
+    //        //        else {
+    //        //            alert("评价成功");
+    //        //        }
+    //        //    },
+    //        //    "json")
+    //        alert("Xxxxx");
+    //    })
+
+    //})
+    function update() {
+        var evaluateText = $("#text").valu();
+        //$.post(
+        //    '/Repair/addEval',
+        //    { Date: date, eval: evaluateText },
+        //    function (flag) {
+        //        if (flag == false) {
+        //            alert("网络异常，请重新评价");
+        //        }
+        //        else {
+        //            alert("评价成功");
+        //        }
+        //    },
+        //    "json")
+        alert("Xxxxx");
+    }
+    //评价jq
+   
 </script>

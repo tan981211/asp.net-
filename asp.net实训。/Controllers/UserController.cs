@@ -60,7 +60,7 @@ namespace asp.net实训_.Controllers
                 db.user.InsertOnSubmit(u1);
                 db.SubmitChanges();
             }
-
+       
             return "";
         }
     }

@@ -5,9 +5,7 @@
     Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 <div class="card">
-    <div class="header">
-
-    </div>
+    
     <div class="content">
         <div class="nav-tabs-navigation">
             <div class="nav-tabs-wrapper">
@@ -88,26 +86,31 @@
             </div>
         </div>
     </div>
+    
 </div>
-	</div>
 
+
+    </footer>
 <div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    @*添加评价*@
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        @*添加评价*@
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
+
+    </div>
 
 @RenderPage("../Shared/js.cshtml")
 <script type="text/javascript">

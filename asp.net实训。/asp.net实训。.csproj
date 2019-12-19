@@ -223,8 +223,8 @@
     <Content Include="Views\Orther\indexAdmin.cshtml" />
     <Content Include="Views\Shared\foot.cshtml" />
     <Content Include="Views\Shared\js.cshtml" />
-    <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Orther\indexUser.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

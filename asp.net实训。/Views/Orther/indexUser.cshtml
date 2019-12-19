@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "indexUser";
+    Layout = "~/Views/Shared/mubanUser.cshtml";
 }
 
 <h2>indexUser</h2>
@@ -15,6 +16,6 @@
     $(document).ready(function () {
 
         $("#change1").text("首页"); /*这里只要改text里面的*/
-        $("#charge").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+        $("#index").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
     });
 </script>

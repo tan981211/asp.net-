@@ -17,13 +17,14 @@ namespace asp.net实训_.Controllers
         public void insert(string name, string type)
         {
             repairAdmin repair = new repairAdmin();
+            repair.userId = getId();
             repair.repairType = type;
-            repair.repairingDate = DateTime.Now;
+            repair.repairedDate = DateTime.Now;
             repair.repperName = "**";
             repair.repairingDate = DateTime.Now;
             repair.isAccept = false;
             repair.isSolve = false;
-            repair.userId = 10000;
+          
             db.repairAdmin.InsertOnSubmit(repair);
             db.SubmitChanges();
         }
@@ -42,7 +43,7 @@ namespace asp.net实训_.Controllers
         // GET: Repair
         public ActionResult repairUser()
         {
-            var data = db.repairAdmin.Select(p => new evaluate(p.repperName, p.repairedDate, p.repairingDate, p.isAccept, p.isSolve,p.evaluateText));
+            var data = db.repairAdmin.Select(p => new evaluate(p.repperName, p.repairedDate, p.repairingDate, p.isAccept, p.isSolve,p.evaluateText,p.repairId));
             return View(data);
         }
         public ActionResult repairAdmin()
@@ -65,17 +66,26 @@ namespace asp.net实训_.Controllers
             }
             
         }
-        public JsonResult addEval(DateTime date,string evaluaText)
+        public JsonResult addEval(int date,string eval)
         {
-            var data = db.repairAdmin.Where(p => p.repairedDate == date);
-            if (data != null)
+           
+            var data = db.repairAdmin.Where(p => p.repairId == date);
+            if (data != null&&data.Count()>0)
             {
-                foreach(repairAdmin r in data)
+                try
                 {
-                    r.evaluateText = evaluaText;
+                    
+                    foreach (repairAdmin r in data)
+                    {
+                        r.evaluateText = eval;
+                    }
+                    db.SubmitChanges();
+                    return Json(true);
                 }
-                db.SubmitChanges();
-                return Json(true);
+                catch(Exception e)
+                {
+                    return Json(false);
+                }
             }
             return Json(false);
         }

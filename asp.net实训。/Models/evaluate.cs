@@ -13,7 +13,8 @@ namespace asp.net实训_.Models
         public bool isAccetp { get; set; }
         public bool isSolve { get; set; }
         public string evaluateText { get; set; }
-        public evaluate(string name, DateTime repairDate, DateTime repairingDate, bool isAccetp, bool isSolve,string evaluateText)
+        public int repairId { get; set; }
+        public evaluate(string name, DateTime repairDate, DateTime repairingDate, bool isAccetp, bool isSolve,string evaluateText,int repairId)
         {
             this.name = name;
             this.repairDate = repairDate;
@@ -21,6 +22,7 @@ namespace asp.net实训_.Models
             this.isAccetp = isAccetp;
             this.isSolve = isSolve;
             this.evaluateText = evaluateText;
+            this.repairId = repairId;
         }
 
         

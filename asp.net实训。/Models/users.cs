@@ -7,6 +7,7 @@ namespace asp.net实训_.Models
 {
     public class users
     {
+      
         //业主编号
         public int userId
         {

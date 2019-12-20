@@ -1,5 +1,5 @@
-﻿@model asp.net实训_.RouteConfig
-
+﻿@*@model asp.net实训_.RouteConfig*@
+@model IEnumerable<asp.net实训_.Models.Complain1>
 @{
     ViewBag.Title = "compalinUser";
     Layout = "~/Views/Shared/mubanUser.cshtml";
@@ -24,27 +24,30 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="pill1">
-                <form method="get" action="/" class="form-horizontal">
+                <form method="post" action="/Compalin/ComplainUser" class="form-horizontal">
                     <div class="content container">
                         <fieldset style="margin-bottom:40px;">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label width">投诉员工姓名</label>
+                                <label class="col-sm-3 control-label width">投诉类型</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="type">
                                 </div>
                             </div>
                         </fieldset>
+
                         <fieldset style="margin-bottom:40px;">
+
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">电话</label>
+                                <label class="col-sm-3 control-label" id="phone">电话</label>
                                 <div class="col-sm-6">
                                     <input class="form-control">
                                 </div>
                             </div>
                         </fieldset>
+
                         <fieldset style="margin-bottom:40px;">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">报修内容</label>
+                                <label class="col-sm-3 control-label" id="contain">投诉内容</label>
                                 <div class="col-sm-6">
                                     <textarea class="form-control" cols="1" rows="7"></textarea>
                                 </div>
@@ -52,8 +55,10 @@
                         </fieldset>
                         <div>
                             <label class="col-sm-4" style="margin-left:15px;"></label>
-                            <button type="submit" class="btn btn-primary col-md-3"> <i class="icmn-checkmark margin-right-5"></i> 确定投诉 </button>
+                            <button type="submit" class="btn btn-primary col-md-3" id="commit"> <i class="icmn-checkmark margin-right-5"></i> 确定投诉 </button>
+
                         </div>
+
                     </div>
                 </form>
             </div>
@@ -63,38 +68,89 @@
                         <table class="table">
                             <thead class="text-primary">
                                 <tr>
-                                    <th>投诉人员</th>
+                                    <th class="hide">complainid</th>
+
                                     <th>投诉时间</th>
-                                    <th>是否受理</th>
+                                    <th>是否类型</th>
                                     <th>投诉处理</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-primary" <a href="#">查看处理</a></td>
-                                </tr>
+
+                                @foreach (var data in Model)
+                                {
+                                    <tr>
+                                        @*<td>@data.complainid</td>*@
+                                        <td>@data.complainDate</td>
+                                        <td>@data.complainType</td>
+                                        <td class="text-primary">  <a data-toggle="modal" data-target=".example-modal-sm " data-desc="@data.complainDesc" id="a">查看处理 <p id="chuli" class="hide">@data.complainDesc</p> </a></td>
+
+                                    </tr>
+                                }
+
+
 
                             </tbody>
                         </table>
                     </div>
                 </div>
                 @RenderPage("../Shared/foot.cshtml")
+
                 </footer>
+                 <div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="mySmallModalLabel">您的评价</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id="tianjia">
+                            @*添加评价*@
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
             </div>
-
         </div>
-        @RenderPage("../Shared/js.cshtml")
-<script type="text/javascript">
-    $(document).ready(function () {
+            </div>
+        </div>
 
-        $("#change1").text("业主投诉信息"); /*这里只要改text里面的*/
-        $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
-    });
-</script>
+       
+
+        @RenderPage("../Shared/js.cshtml")
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#change1").text("业主投诉信息"); /*这里只要改text里面的*/
+                $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+            });
+
+            $("#commit").click(function () {
+                $.post("/Compalin/insertComplain",
+                    { type: $('#type').val() },
+                    function (flag) {
+                        if (flag == false) { alert("投诉成功"); }
+                        else { alert("投诉失败"); }
+                    }
+                    , "json")
+                $("#commit").submit();
+            })
+
+                    //$(".example-modal-sm").on('show.bs.modal', function (event) {
+                    //    var a = $(event.relatedTarget);
+                    //    var modal = $(this);
+                    //    model.find('.tianjia').text(a.data("desc"));
+
+                    //}
+            $("#a").click(function () {
+                var data = $(this).children().text();
+                //data = $(this).parent().prevAll().eq(3).text();
+                $("#tianjia").text(data)
+            })
+        </script>
 
 
 

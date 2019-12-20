@@ -1004,13 +1004,22 @@ namespace asp.net实训_
     partial void OncomplainDateChanged();
     #endregion
 		
-		public complain()
+		public complain(int complainId, string complainType, string complainDesc)
 		{
 			this._user = default(EntityRef<user>);
 			OnCreated();
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_complainId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+
+        public complain(int complainId, string complainType, string complainDesc, DateTime complainDate) : this(complainId, complainType, complainDesc)
+        {
+            this.complainDate = complainDate;
+        }
+
+        public complain()
+        {
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_complainId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int complainId
 		{
 			get

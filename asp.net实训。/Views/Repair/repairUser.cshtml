@@ -22,7 +22,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="pill1">
-                <form method="get" action="" class="form-horizontal">
+                <form method="get" action="/Repair/repairUser" class="form-horizontal">
                     <div class="content container">
                         <fieldset style="margin-bottom:40px;">
                             <div class="form-group">
@@ -50,48 +50,52 @@
                         </fieldset>
                         <div>
                             <label class="col-sm-4" style="margin-left:15px;"></label>
-                            <button class="btn btn-primary col-md-3" id="commit"> <i class="icmn-checkmark margin-right-5"></i> 报修 </button>
+                            <button class="btn btn-primary col-md-3" id="commit" type="submit"> <i class="icmn-checkmark margin-right-5"></i> 报修 </button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="tab-pane " id="pill2">
-                <header><p class="text-info">评价</p></header>
-                <div class="content">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="text-primary">
-                                <tr>
-                                    <th>维修人员</th>
-                                    <th>维修时间</th>
-                                    <th>结束时间</th>
-                                    <th>是否受理</th>
-                                    <th>是否解决</th>
-                                    <th>评价</th>
+                <form action="/Repair/repairUser" method="post" id="upd">
+                    <header><p class="text-info">评价</p></header>
+                    <div class="content">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>维修人员</th>
+                                        <th>维修时间</th>
+                                        <th>结束时间</th>
+                                        <th>是否受理</th>
+                                        <th>是否解决</th>
+                                        <th>评价</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                @foreach (var data in Model)
-                                {
-                                <tr>
-                                    <td>@data.name</td>
-                                    <td>@data.repairDate</td>
-                                    <td>@data.repairingDate</td>
-                                    <td>@data.isAccetp</td>
-                                    <td>@data.isSolve</td>
-                                    <td class="text-primary" ><a href="#" data-toggle="modal" data-target="#myModel " class="evla" data-Date="@data.repairDate">评价</a>&nbsp
-                                <a data-toggle="modal" data-target=".example-modal-sm " class="dianji">查看评价 <p class="hide" >@data.evaluateText</p> </a></td>
-                                    
-                                </tr>
-                                        }
-                      
+                                    @foreach (var data in Model)
+                                    {
+                                        <tr>
+                                            <td>@data.name</td>
+                                            <td>@data.repairDate</td>
+                                            <td>@data.repairingDate</td>
+                                            <td>@data.isAccetp</td>
+                                            <td>@data.isSolve</td>
+                                            <td class="hide">@data.repairId</td>
+                                            <td class="text-primary">
+                                                <a data-toggle="modal" data-id="@data.repairId" data-target="#myModel " class="evla" data-userdate="@data.repairDate">评价</a>&nbsp
+                                                <a data-toggle="modal" data-target=".example-modal-sm " href="#" class="dianji">查看评价 <p class="hide">@data.evaluateText</p> </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
                                 </tbody>
-                        </table>
+                            </table>
+                        </div>
                     </div>
-                </div>
-
+                </form>
 
             </div>
         </div>
@@ -127,17 +131,20 @@
 @*评价模态框*@
 <div class="modal fade example-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="myModel">
     <div class="modal-dialog modal-sm" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="mySmallModalLabel">评价</h4>
             </div>
-            <div class="modal-body">
-                <textarea class="form-control" cols="1" rows="5" id="text"></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-info"  id="evla1" onclick="update()">评价</button>
-                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
-            </div>
+            <form action="/Repair/repairUser" method="post"  id="a">
+                <div class="modal-body">
+                    <textarea class="form-control" cols="1" rows="5" id="text"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-info  btn1" id="evla1" data-dismiss="modal">评价</button>
+
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -171,44 +178,33 @@
     })
 
 
-    //$(".example-modal").on('show.bs.modal', function (event) {
-    //    var a = $(event.relatedTarget);
-    //    var date = a.data["Date"];
-     
-    //    $("#evla1").click(function () {
-    //        var evaluateText = $("#text").valu();
-    //        //$.post(
-    //        //    '/Repair/addEval',
-    //        //    { Date: date, eval: evaluateText },
-    //        //    function (flag) {
-    //        //        if (flag == false) {
-    //        //            alert("网络异常，请重新评价");
-    //        //        }
-    //        //        else {
-    //        //            alert("评价成功");
-    //        //        }
-    //        //    },
-    //        //    "json")
-    //        alert("Xxxxx");
-    //    })
+    $(".example-modal").on('show.bs.modal', function (event) {
+        var a = $(event.relatedTarget);
+        var modal = $(this);
+        //var date = a.data('userdate');
+        //var eval = modal.find('#text').val();
+        //var evaluateText = $('#text').val();
+        var btn = modal.find('.btn1');
+        btn.click(function () {
+            $.post(
+                '/Repair/addEval',
+                { date: a.data('id'), eval: modal.find('#text').val()},
+                function (flag) {
+                    if (flag == false) {
+                        alert("评价出错");
+                    }
+                    else {
+                        //alert("评价成功");
+                    }
+                },
+                "json")
+            alert("评价成功");
+            $("#a").submit();
+            //location.href = "/Repair/repairUser"
+        })
 
-    //})
-    function update() {
-        var evaluateText = $("#text").valu();
-        //$.post(
-        //    '/Repair/addEval',
-        //    { Date: date, eval: evaluateText },
-        //    function (flag) {
-        //        if (flag == false) {
-        //            alert("网络异常，请重新评价");
-        //        }
-        //        else {
-        //            alert("评价成功");
-        //        }
-        //    },
-        //    "json")
-        alert("Xxxxx");
-    }
+    })
+
     //评价jq
    
 </script>

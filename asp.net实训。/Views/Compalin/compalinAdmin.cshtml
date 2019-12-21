@@ -1,22 +1,190 @@
-﻿@model asp.net实训_.RouteConfig
+﻿
+@model IEnumerable<asp.net实训_.Models.Complain1>
 
 @{
-    ViewBag.Title = "compalinAdmin";
+    ViewBag.Title = "repairAdmin";
     Layout = "~/Views/Shared/mubanAdmin.cshtml";
 }
 
-@RenderPage("../Shared/foot.cshtml")
-    </footer>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="content">
+                        <h4 class="title">信息处理表</h4>
+                        <div class="toolbar">
+                            <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        </div>
+                        <div class="material-datatables">
+                            <table id="datatables" class="table table-striped table-no-bordered table-hover" style="width:100%;cellspacing:0">
+                                <thead>
+                                    <tr>
+                                        <th class="hide">投诉单号</th>
+                                        <th>业主id</th>
+                                        <th>投诉类型</th>
+                                        <th>投诉时间</th>
+                                        <th class="disabled-sorting text-primary">处理</th>
+                                    </tr>
+
+
+
+                                </thead>
+                                <tbody>
+                                    @foreach (var data in Model)
+                                    {
+                                        <tr>
+                                            <td class="hide">@data.complainid</td>
+                                            <td>@data.userid</td>
+                                            <td>@data.complainType</td>
+                                            <td>@data.complainDate</td>
+                                            <td class="text-primary">
+                                                <a data-toggle="modal" data-id="@data.complainid" data-target=".example-modal">处理</a>&nbsp
+                                                <a data-toggle="modal" data-target=".example-modal-sm " href="#" class="dianji">查看处理 <p class="hide">@data.complainDesc</p> </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                    </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end content-->
+                </div>
+                <!--  end card  -->
+            </div>
+            <!-- end col-md-12 -->
+        </div>
     </div>
+</div>
+
+
+@RenderPage("../Shared/foot.cshtml")
+
+    </footer>
+
+</div>
 
     </div>
-@RenderPage("../Shared/js.cshtml")
+
+
+
+<div class="modal fade example-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="myModel">
+    <div class="modal-dialog modal-sm" role="document">
+      <form action="/Compalin/compalinAdmin" method="post" id="a">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title" id="mySmallModalLabel">处理</h4>
+              </div>
+
+              <div class="modal-body">
+                  <textarea class="form-control" cols="1" rows="5" id="text"></textarea>
+              </div>
+
+              <div class="modal-footer">
+                  <button type="submit" class="btn btn-info  btn1 a" id="commit" data-dismiss="modal" type="button">处理</button>
+
+
+              </div>
+          </div>
+       </form>
+       
+    </div>
+</div>
+
+@*查看评价模态框*@
+<div class="modal fade example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="mySmallModalLabel">您的处理</h4>
+            </div>
+            <div class="modal-body">
+                <p id="tianjia">
+                    @*添加处理*@
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@RenderPage("../Shared/js.cshtml");
 <script type="text/javascript">
+
+    $('#datatables').DataTable({
+        "fnPreDrawCallback": function (oSettings) {
+            $('.dataTables_filter input').attr({ 'name': 'search', 'placeholder': '搜索业主账号' });//提示
+        },
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+            [5, 10, 25, 50, -1],
+            [5, 10, 25, 50, "All"]
+
+        ],
+        responsive: true,
+        bLengthChange: true,
+        // 更换语言
+        "oLanguage": {
+            "sLengthMenu": "每页显示 _MENU_ 条记录",
+            "sZeroRecords": "抱歉，没有找到",
+            "sInfo": "从 _START_ 到 _END_ /共 _TOTAL_ 条数据 ",
+            "sInfoEmpty": "没有数据",
+            "sInfoFiltered": "(从 _MAX_ 条数据中检索)",
+            "sSearch": "查找",
+            "oPaginate": {
+                "sFirst": "首页",
+                "sPrevious": "前一页",
+                "sNext": "后一页",
+                "sLast": "尾页",
+                "sZeroRecords": "没有检索到数据",
+
+            },
+
+
+        }
+
+
+    });
+
+    $(".example-modal").on('show.bs.modal', function (event) {
+        var a = $(event.relatedTarget);
+        var modal = $(this);
+        var btn = modal.find('.btn1');
+        btn.click(function () {
+            $.post(
+                '/Compalin/changeComplain',
+                { id: a.data('id'), desc: modal.find('#text').val() },
+                function (flag) {
+                    if (flag == false) {
+                        alert("网路异常，请重新输入");
+                    }
+                    else {
+                        alert("处理通知已存储");
+                          $("#a").submit();
+                    }
+                },
+                "json")
+          
+        })
+
+    })
+
+
+
+
+
+
     $(document).ready(function () {
 
-        $("#change1").text("业主投诉信息管理"); /*这里只要改text里面的*/
-        $("#compalin").addClass("active"); /*这里找到母版中你要改的选项li那加入一个id，然后超链接#改成你的控制器要去的网页的网址*/
+        $("#change1").text("维修信息管理");
+        $("#repair").addClass("active");
     });
+
+    $(".dianji").click(function () {
+        var data = $(this).children().text();
+        //data = $(this).parent().prevAll().eq(3).text();
+        $("#tianjia").text(data)
+    })
 </script>
-
-

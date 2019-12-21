@@ -80,8 +80,8 @@
                                             <td>@data.name</td>
                                             <td>@data.repairDate</td>
                                             <td>@data.repairingDate</td>
-                                            <td>@data.isAccetp</td>
-                                            <td>@data.isSolve</td>
+                                            <td>@data.isAccetp1</td>
+                                            <td>@data.isSolve1</td>
                                             <td class="hide">@data.repairId</td>
                                             <td class="text-primary">
                                                 <a data-toggle="modal" data-id="@data.repairId" data-target="#myModel " class="evla" data-userdate="@data.repairDate">评价</a>&nbsp
@@ -170,7 +170,7 @@
     });
 
 
-    //设置评价的值
+    //查看评价
     $(".dianji").click(function () {
         var data = $(this).children().text();
         //data = $(this).parent().prevAll().eq(3).text();

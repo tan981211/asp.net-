@@ -24,7 +24,7 @@
         </div>
         <div class="tab-content">
             <div class="tab-pane active" id="pill1">
-                <form method="post" action="/Compalin/ComplainUser" class="form-horizontal">
+                <form method="post" action="/Compalin/compalinUser" class="form-horizontal">
                     <div class="content container">
                         <fieldset style="margin-bottom:40px;">
                             <div class="form-group">
@@ -132,7 +132,7 @@
                 $.post("/Compalin/insertComplain",
                     { type: $('#type').val() },
                     function (flag) {
-                        if (flag == false) { alert("投诉成功"); }
+                        if (flag == true) { alert("投诉成功"); }
                         else { alert("投诉失败"); }
                     }
                     , "json")

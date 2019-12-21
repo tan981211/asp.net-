@@ -43,14 +43,41 @@ namespace asp.net实训_.Controllers
         // GET: Repair
         public ActionResult repairUser()
         {
-            var data = db.repairAdmin.Select(p => new evaluate(p.repperName, p.repairedDate, p.repairingDate, p.isAccept, p.isSolve,p.evaluateText,p.repairId));
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
+            int id = getId();
+            var data = db.repairAdmin.Where(p=>p.userId==id).Select(p => new evaluate(p.repperName, p.repairedDate, p.repairingDate, p.isAccept, p.isSolve,p.evaluateText,p.repairId));
             return View(data);
         }
         public ActionResult repairAdmin()
         {
-            return View();
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
+            var data = db.repairAdmin.Select(p => new evaluate(p.repairId, p.userId, p.repperName,p.repairType, p.repairType, p.repairedDate,p.repairingDate, p.repperPhone,p.isAccept,p.isSolve,p.evaluateText));
+            return View(data);
         }
-
+        public JsonResult changeEval(int repairid, string name, string phone, string isaccept, string isslove)
+        {
+            var data = db.repairAdmin.Select(p=>p).Where(p => p.repairId == repairid);
+            if (data != null)
+            {
+                bool isaccept1 = false, isslove1 = false;
+                if (isaccept != "1")
+                    isaccept1 = true;
+                if (isslove != "1")
+                    isslove1 = true;
+                foreach(repairAdmin r in data)
+                {
+                    r.repperName = name;
+                    r.repperPhone = phone;
+                    r.isAccept = isaccept1;
+                    r.isSolve = isslove1;
+                }
+                db.SubmitChanges();
+                return Json(true);
+            }
+            return Json(false);
+        }
         public JsonResult addRepair(string name,string type)
         {
             bool flag=false;

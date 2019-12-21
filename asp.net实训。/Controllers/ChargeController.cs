@@ -17,6 +17,7 @@ namespace asp.net实训_.Controllers
         }
         public ActionResult chargeUser()//业主收费页
         {
+
             return View();
         }
         public ActionResult chargeAdmin()//管理收费页

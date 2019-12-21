@@ -15,21 +15,45 @@ namespace asp.net实训_.Controllers
         // GET: Compalin
         public ActionResult Index()
         {
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
             return View();
         }
 
         public ActionResult compalinUser()
         {
-            var data = db.complain.Select(p => new Complain1(p.complainId,p.complainType,p.complainDesc,p.complainDate));
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
+            int id = getId();
+            var data = db.complain.Where(p=>p.userId==id).Select(p => new Complain1(p.complainId,p.complainType,p.complainDesc,p.complainDate));
             return View(data);
         }
         public ActionResult handleUser()
         {
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
             return View();
         }
         public ActionResult compalinAdmin()
         {
-            return View();
+            if (Request.Cookies["email"] == null)
+                return RedirectToAction("../Home/login");
+            var data = db.complain.Select(p=>new Complain1(p.complainId,p.complainType,p.complainDesc,p.userId,p.complainDate));
+            return View(data);
+        }
+        public JsonResult changeComplain(int id,string desc)
+        {
+            var data = db.complain.Select(p => p).Where(p => p.complainId == id);
+            if (data != null)
+            {
+                foreach(complain r in data)
+                {
+                    r.complainDesc = desc;
+                }
+                db.SubmitChanges();
+                return Json(true);
+            }
+            return Json(false);
         }
         public JsonResult insertComplain(string type)
         {

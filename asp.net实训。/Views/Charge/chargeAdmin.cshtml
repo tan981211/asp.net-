@@ -121,5 +121,32 @@
         // Init DatetimePicker
         demo.initFormExtendedDatetimepickers();
     });
+
+    $(".example-modal").on('show.bs.modal', function (event) {
+        var a = $(event.relatedTarget);
+        var modal = $(this);
+        //var date = a.data('userdate');
+        //var eval = modal.find('#text').val();
+        //var evaluateText = $('#text').val();
+        var btn = modal.find('.btn1');
+        btn.click(function () {
+            $.post(
+                '/Repair/addEval',
+                { date: a.data('id'), eval: modal.find('#text').val() },
+                function (flag) {
+                    if (flag == false) {
+                        alert("评价出错");
+                    }
+                    else {
+                        //alert("评价成功");
+                    }
+                },
+                "json")
+            alert("评价成功");
+            $("#a").submit();
+            //location.href = "/Repair/repairUser"
+        })
+
+    })
 </script>
 
